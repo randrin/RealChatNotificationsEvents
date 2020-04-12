@@ -11,9 +11,9 @@
 
 Experimentation of real notifications, events and chat with Laravel, Pusher, Websocket, VueJs, Vuetity, ... 
 
-- **[Set Up Laravel Project]**
-- **[Create Models/Controllers/Factories/Databases with php artisan make:model Model/NomeModel -mfr]**
-- [Powerful dependency injection container](https://laravel.com/docs/container).
+- **Set Up Laravel Project**
+- **Create Models/Controllers/Factories/Databases with php artisan make:model Model/NomeModel -mfr**
+- **Create Fields Table, Relationship and migrate with php artisan migrate**
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
 - Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
 - Database agnostic [schema migrations](https://laravel.com/docs/migrations).
