@@ -15,6 +15,7 @@ Experimentation of real notifications, events and chat with Laravel, Pusher, Web
 - **Create Models/Controllers/Factories/Databases with php artisan make:model Model/NomeModel -mfr**
 - **Create Fields Table, Relationship and migrate with php artisan migrate**
 - **Create Fakers Data and migrate with php artisan db:seed**
+- **CRUD Question and Test in Postman**
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
 - Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
 - Database agnostic [schema migrations](https://laravel.com/docs/migrations).
