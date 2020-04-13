@@ -17,6 +17,7 @@ Experimentation of real notifications, events and chat with Laravel, Pusher, Web
 - **Create Fakers Data and migrate with php artisan db:seed**
 - **CRUD Question and Test in Postman**
 - **CRUD Category, Reply, Like and Test in Postman**
+- **Installation [JWT](https://jwt-auth.readthedocs.io/en/develop/) and Test in Postman**
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
 - Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
 - Database agnostic [schema migrations](https://laravel.com/docs/migrations).
