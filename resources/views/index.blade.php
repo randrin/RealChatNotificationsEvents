@@ -5,20 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
-    <title>Document</title>
+    <title>Laravel-JWT-Vuetify Real Time Notification</title>
 </head>
 <body>
     <div id="app">
         <v-app>
-            <v-tabs>
-                <v-tab>Item One</v-tab>
-                <v-tab>Item Two</v-tab>
-                <v-tab>Item Three</v-tab>
-              </v-tabs>
+            <app-home></app-home>
         </v-app>
       </div>
     </div>
-
     <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
