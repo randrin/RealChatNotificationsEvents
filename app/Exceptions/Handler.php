@@ -58,6 +58,8 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Token expired, try another connexion'], Response::HTTP_BAD_REQUEST);
         } elseif ($exception instanceof TokenInvalidException) {
             return response()->json(['error' => 'Invalid Token, try another one'], Response::HTTP_BAD_REQUEST);
+        } elseif ($exception instanceof TokenBlacklistedException) {
+            return response()->json(['error' => 'Token cannot be used, get new one'], Response::HTTP_BAD_REQUEST);
         } elseif ($exception instanceof JWTException) {
             return response()->json(['error' => 'There is some problem with your token'], Response::HTTP_BAD_REQUEST);
         }
