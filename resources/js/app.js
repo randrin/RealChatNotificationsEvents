@@ -32,6 +32,10 @@ Vue.component('app-home', require('./components/AppHome.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import User from './apis/User';
+window.User = User;
+console.log(User.getIdUser());
+
 import routers from './components/routers/routers';
 
 const app = new Vue({
