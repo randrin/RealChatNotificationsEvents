@@ -1,15 +1,19 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-Vue.use(VueRouter)
+import Login from '../site/Login';
+
+Vue.use(VueRouter);
 
 const routes = [
-    // { path: '/foo', component: Foo },
+    { path: '/login', component: Login },
     // { path: '/bar', component: Bar }
   ]
 
 const router = new VueRouter({
-    routes // short for `routes: routes`
-})
+    routes,
+    hashbang: false,
+    mode: 'history',
+});
 
 export default router;

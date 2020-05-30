@@ -1,11 +1,20 @@
 <template>
   <v-toolbar>
-    <v-toolbar-title>Real Notifications</v-toolbar-title>
+    <v-toolbar-title>Real Time Forum</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>Link One</v-btn>
-      <v-btn flat>Link Two</v-btn>
-      <v-btn flat>Link Three</v-btn>
-    </v-toolbar-items>
+    <div class="hidden-sm-and-down">
+      <router-link to="/login">
+        <v-btn>Login</v-btn>
+      </router-link>
+      <v-btn>Link Two</v-btn>
+      <v-btn>Link Three</v-btn>
+    </div>
   </v-toolbar>
 </template>
+
+
+<style scoped>
+  a:hover {
+    text-decoration: none;
+  }
+</style>

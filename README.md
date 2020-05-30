@@ -18,9 +18,10 @@ Experimentation of real notifications, events and chat with Laravel, Pusher, Web
 - **CRUD Question and Test in Postman**
 - **CRUD Category, Reply, Like and Test in Postman**
 - **Installation [JWT](https://jwt-auth.readthedocs.io/en/develop/) and Test in Postman**
-- **Sign Up Registration user**
+- **Sign Up Registration user and Test in Postman**
 - **Installation [Vuetify](https://v1.vuetifyjs.com/en/getting-started/quick-start)**
 - **Installation [Vue Router](https://router.vuejs.org/guide/#javascript) and configuration**
+- **Vue Login Page and call authentification Api**
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
 - Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
 - Database agnostic [schema migrations](https://laravel.com/docs/migrations).

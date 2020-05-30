@@ -50,7 +50,7 @@
         </v-layout>
       </v-card-text>
       <v-card-actions class="grey lighten-2 justify-center">
-        &copy; {{ new Date().getFullYear() }} — 2020<strong> KazouGroup Srl</strong>
+        Copyright &copy; {{ new Date().getFullYear() }} — 2020 <strong> KazouGroup Srl</strong>
       </v-card-actions>
     </v-card>
   </v-footer>
@@ -78,6 +78,13 @@
   }
 </script>
 
-<style>
-
+<style scoped>
+  .v-footer {
+    padding: 0px;
+  }
+  footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+  }
 </style>

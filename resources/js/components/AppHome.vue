@@ -1,17 +1,18 @@
 <template>
   <div>
       <toolbar></toolbar>
-      <br/>
+      <router-view></router-view>
       <app-footer></app-footer>
   </div>
 </template>
 
 <script>
     import toolbar from './Toolbars';
-    import appFooter from './AppFooter';
+    import AppFooter from './AppFooter';
+    import login from "./site/Login";
 
     export default {
-        components: { toolbar, appFooter }
+        components: { toolbar, AppFooter, login }
     }
 </script>
 
