@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::view('/{any}', "index");
+Route::view('/{any}/{any1}', "index");
 
 Auth::routes();
 
