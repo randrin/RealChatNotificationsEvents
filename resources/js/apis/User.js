@@ -13,6 +13,7 @@ class User {
         const username = response.data.user;
         if(Token.isValid(access_token)) {
             AppStorage.store(access_token, username);
+            window.location.href = '/forum';
         }
     }
 
@@ -30,6 +31,7 @@ class User {
 
     isLogout() {
         AppStorage.clear();
+        window.location.href = '/forum';
     }
 
     getUsername() {

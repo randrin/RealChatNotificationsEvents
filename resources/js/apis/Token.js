@@ -3,8 +3,7 @@ class Token {
     isValid(token) {
         const payload = this.payload(token);
         if (payload) {
-            let validUrl = payload.iss.indexOf('/api/auth/login');
-            return validUrl !== -1 ? true : false;
+            return (payload.iss.includes('/api/auth/login') || payload.iss.includes('/api/auth/signup')) ? true : false;
         }
         return false;
     }

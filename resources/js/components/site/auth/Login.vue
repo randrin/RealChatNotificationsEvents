@@ -1,5 +1,4 @@
 <template>
-  <v-form>
     <v-container class="my-5">
       <h2 class="text-center">Welcome to Login Page</h2>
       <v-form @submit.prevent="login">
@@ -34,7 +33,6 @@
         </v-row>
       </v-form>
     </v-container>
-  </v-form>
 </template>
 
 <script>
@@ -46,6 +44,11 @@
           email: null,
           password: null
         }
+      }
+    },
+    created() {
+      if(User.isLogged()) {
+        this.$router.push({ name : 'forum'});
       }
     },
     methods: {

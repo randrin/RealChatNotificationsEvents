@@ -34,7 +34,7 @@ Vue.component('app-home', require('./components/AppHome.vue').default);
 
 import User from './apis/User';
 window.User = User;
-console.log(User.getIdUser());
+window.EventBus = new Vue();
 
 import routers from './components/routers/routers';
 

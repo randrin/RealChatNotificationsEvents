@@ -84,7 +84,7 @@
   }
   footer {
     bottom: 0;
-    position: absolute;
+    position: relative;
     width: 100%;
   }
 </style>

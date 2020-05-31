@@ -9,7 +9,7 @@
 <script>
     import toolbar from './Toolbars';
     import AppFooter from './AppFooter';
-    import login from "./site/Login";
+    import login from "./site/auth/Login";
 
     export default {
         components: { toolbar, AppFooter, login }
