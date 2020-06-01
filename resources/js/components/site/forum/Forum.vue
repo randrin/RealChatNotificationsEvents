@@ -10,7 +10,7 @@
                 </questions>
             </v-flex>
             <v-flex xs4>
-                Sidebar
+                <side-bar></side-bar>
             </v-flex>
         </v-layout>
     </v-container>
@@ -18,9 +18,10 @@
 
 <script>
     import Questions from "../questions/Questions";
+    import SideBar from "../../SideBar";
     export default {
         name: "Forum",
-        components: {Questions},
+        components: {SideBar, Questions},
         data() {
             return {
                 questions: []

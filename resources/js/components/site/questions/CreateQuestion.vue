@@ -65,10 +65,10 @@
             }
         },
         created() {
-            this.loadCaterories();
+            this.loadCatgories();
         },
         methods: {
-            loadCaterories() {
+            loadCatgories() {
                 axios.get('/api/category')
                     .then((response) => this.categories = response.data.data)
                     .catch((error) => this.errors = error.response.data.errors)

@@ -33,7 +33,7 @@
                 items: [
                     {title: 'Forum', to: '/forum', show: true},
                     {title: 'Ask Question', to: '/ask/question', show: User.isLogged()},
-                    {title: 'Categories', to: '/categories', show: User.isLogged()},
+                    {title: 'Add Category', to: '/create/category', show: User.isLogged()},
                     {title: 'Login', to: '/login', show: !User.isLogged()},
                     {title: 'Logout', to: '/logout', show: User.isLogged() , color: 'green'},
                     {title: 'Sign Up', to: '/signup', show: !User.isLogged(), color: 'green'}
