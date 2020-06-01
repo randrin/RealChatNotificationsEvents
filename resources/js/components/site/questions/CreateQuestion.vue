@@ -25,12 +25,14 @@
                             autocomplete
                     ></v-select>
                     <span class="text-danger"
-                          v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</span>
+                          v-if="errors.category_id">{{errors.category_id[0]}}</span>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col cols="12" sm="6">
                     <vue-simplemde v-model="form.body"></vue-simplemde>
+                    <span class="text-danger"
+                          v-if="errors.body">{{errors.body[0]}}</span>
                 </v-col>
             </v-row>
             <v-row>
@@ -72,7 +74,9 @@
                     .catch((error) => this.errors = error.response.data.errors)
             },
             create() {
-
+                axios.post('/api/question', this.form)
+                    .then((response) => this.$router.push(response.data.path))
+                    .catch((error) => this.errors = error.response.data)
             }
         }
     }

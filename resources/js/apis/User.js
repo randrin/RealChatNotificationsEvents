@@ -46,6 +46,10 @@ class User {
             return payload.sub;
         }
     }
+
+    isAuthorizedActions(id) {
+        return this.getIdUser() === id ? true : false;
+    }
 }
 
 

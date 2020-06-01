@@ -23,7 +23,8 @@ Experimentation of real notifications, events and chat with Laravel, Pusher, Web
 - **Installation [Vue Router](https://router.vuejs.org/guide/#javascript) and configuration**
 - **Vue Login Page and call authentification Api**
 - **Login and Logout Security Token**
-- **Authentification, Sign Up, Login**
+- **Authentification, Sign Up, Login*
+- **CRUD Front End Questions**
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
 - Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
 - Database agnostic [schema migrations](https://laravel.com/docs/migrations).
