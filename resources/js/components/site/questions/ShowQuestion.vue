@@ -1,19 +1,21 @@
 <template>
-    <v-container fluid class="my-5">
+    <div class="container-fluid my-5">
         <v-card class="mx-auto mb-4">
             <v-list-item>
                 <div class="d-flex">
                     <v-list-item-avatar color="grey"></v-list-item-avatar>
                     <v-list-item-content>
                         <v-list-item-title class="headline">
-                            {{data.title}}
+                            {{question.title}}
                         </v-list-item-title>
-                        <v-list-item-subtitle>By {{data.user}}, <span class="text-danger">{{data.created_at}}</span>
+                        <v-list-item-subtitle>By {{question.user}}, <span class="text-danger">{{question.created_at}}</span>
                         </v-list-item-subtitle>
                     </v-list-item-content>
                 </div>
                 <v-spacer></v-spacer>
-                <v-btn color="green">5 Replies</v-btn>
+                <v-chip class="ma-2" color="green" text-color="white">
+                    <v-avatar left class="green darken-4">{{question.repliesCount}}</v-avatar> Replies
+                </v-chip>
             </v-list-item>
             <v-card-text v-html="body">
             </v-card-text>
@@ -25,23 +27,34 @@
                     <v-icon>mdi-delete-forever</v-icon>
                 </v-btn>
             </v-card-actions>
+            <div v-else>
+                <v-btn @click="reply" class="ma-2" fab outlined small color="yellow">
+                    <v-icon>mdi-reply-all-outline</v-icon>
+                </v-btn>
+            </div>
         </v-card>
-    </v-container>
+        <Replies :replies="question.replies" :title="question.title" v-if="showReply"></Replies>
+        <create-reply v-else :question="question.slug"></create-reply>
+    </div>
 </template>
 
 <script>
+    import Replies from "../replies/Replies";
+    import CreateReply from "../replies/CreateReply";
     export default {
         name: "ShowQuestion",
+        components: {CreateReply, Replies},
         props: ['data'],
         data() {
             return {
-                showActions: User.isAuthorizedActions(this.data.user_id)
+                question: this.data,
+                showActions: User.isAuthorizedActions(this.data.user_id),
+                showReply: true
             }
         },
-        computed: {
-            body() {
-                return md.parse(this.data.body);
-            }
+        computed() {
+            this.body();
+            this.loadReplies()
         },
         methods: {
             destroy() {
@@ -51,6 +64,17 @@
             },
             edit() {
                 EventBus.$emit('startEditing');
+            },
+            reply() {
+                this.showReply = false;
+            },
+            loadReplies() {
+                EventBus.$on('newReply', (reply) => {
+                    this.question.unshift(reply);
+                })
+            },
+            body() {
+                return md.parse(this.data.body);
             }
         }
     }
