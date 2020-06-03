@@ -5,7 +5,7 @@
             <v-toolbar-title>All Forum Categories</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
-        <v-list>
+        <v-list v-if="categories.length > 0">
             <v-list-item
                     v-for="category in categories"
                     :key="category.id"
@@ -22,6 +22,9 @@
                     <v-img :src="category.avatar"></v-img>
                 </v-list-item-avatar>
             </v-list-item>
+        </v-list>
+        <v-list v-else>
+            <div class="text-center">Ouff !!!! No data avalaible in this moment. </div>
         </v-list>
     </v-card>
 </template>

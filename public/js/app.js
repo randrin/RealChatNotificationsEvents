@@ -2056,6 +2056,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SideBar",
   data: function data() {
@@ -2132,7 +2135,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: 'Add Category',
         to: '/create/category',
-        show: User.isLogged()
+        show: User.isLogged() && User.isAuthorized()
       }, {
         title: 'Login',
         to: '/login',
@@ -2168,6 +2171,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2461,51 +2471,90 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CreateCategory",
   data: function data() {
     return {
+      action: true,
       form: {
-        name: null
+        name: null,
+        slug: null
       },
       categories: [],
       errors: []
     };
   },
   methods: {
-    create: function create() {
+    loadCatgories: function loadCatgories() {
       var _this = this;
 
-      axios.post('/api/category', this.form).then(function (response) {
-        _this.categories.unshift(response.data);
-
-        _this.form.name = null;
+      axios.get('/api/category').then(function (response) {
+        return _this.categories = response.data.data;
       })["catch"](function (error) {
-        return _this.errors = error.response.data;
+        return _this.errors = error.response.data.errors;
       });
     },
-    loadCatgories: function loadCatgories() {
+    checkPrivileges: function checkPrivileges() {
+      if (!User.isAuthorized()) {
+        this.$router.push('/forum');
+      }
+    },
+    submit: function submit() {
+      this.action ? this.create() : this.update();
+    },
+    create: function create() {
       var _this2 = this;
 
-      axios.get('/api/category').then(function (response) {
-        return _this2.categories = response.data.data;
+      axios.post('/api/category', this.form).then(function (response) {
+        _this2.categories.unshift(response.data);
+
+        _this2.form.name = null;
       })["catch"](function (error) {
-        return _this2.errors = error.response.data.errors;
+        return _this2.errors = error.response.data;
       });
     },
-    edit: function edit() {},
-    destroy: function destroy(slug, index) {
+    edit: function edit(index) {
+      this.action = false;
+      this.form.name = this.categories[index].name;
+      this.form.slug = this.categories[index].slug;
+      this.categories.splice(index, 1);
+    },
+    update: function update() {
       var _this3 = this;
 
-      axios["delete"]("/api/category/".concat(slug)).then(function (response) {
-        return _this3.categories.splice(index, 1);
+      axios.patch("/api/category/".concat(this.form.slug), this.form).then(function (response) {
+        _this3.categories.unshift(response.data);
+
+        _this3.form.name = null;
+        _this3.action = true;
       })["catch"](function (error) {
         return console.log(error.response.data);
       });
+    },
+    destroy: function destroy(slug, index) {
+      var _this4 = this;
+
+      axios["delete"]("/api/category/".concat(slug)).then(function (response) {
+        return _this4.categories.splice(index, 1);
+      })["catch"](function (error) {
+        return console.log(error.response.data);
+      });
+    },
+    cancel: function cancel() {
+      this.form.name = null;
+      this.action = true;
     }
   },
   created: function created() {
     this.loadCatgories();
+    this.checkPrivileges();
   }
 });
 
@@ -57276,37 +57325,43 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "v-list",
-        _vm._l(_vm.categories, function(category) {
-          return _c(
-            "v-list-item",
-            { key: category.id, on: { click: function($event) {} } },
-            [
-              false
-                ? undefined
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                { staticClass: "text-right" },
+      _vm.categories.length > 0
+        ? _c(
+            "v-list",
+            _vm._l(_vm.categories, function(category) {
+              return _c(
+                "v-list-item",
+                { key: category.id, on: { click: function($event) {} } },
                 [
-                  _c("v-list-item-title", {
-                    domProps: { textContent: _vm._s(category.name) }
-                  })
+                  false
+                    ? undefined
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item-content",
+                    { staticClass: "text-right" },
+                    [
+                      _c("v-list-item-title", {
+                        domProps: { textContent: _vm._s(category.name) }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  false
+                    ? undefined
+                    : _vm._e()
                 ],
                 1
-              ),
-              _vm._v(" "),
-              false
-                ? undefined
-                : _vm._e()
-            ],
+              )
+            }),
             1
           )
-        }),
-        1
-      )
+        : _c("v-list", [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v("Ouff !!!! No data avalaible in this moment. ")
+            ])
+          ])
     ],
     1
   )
@@ -57411,27 +57466,33 @@ var render = function() {
           _c(
             "v-row",
             [
-              _c(
-                "v-col",
-                { attrs: { cols: "12", sm: "6" } },
-                [
-                  _c("v-text-field", {
-                    attrs: {
-                      label: "Email Address",
-                      type: "text",
-                      outlined: ""
-                    },
-                    model: {
-                      value: _vm.form.email,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "email", $$v)
+              _c("v-col", { attrs: { cols: "12", sm: "6" } }, [
+                _c(
+                  "div",
+                  { staticClass: "d-flex" },
+                  [
+                    _c("v-icon", { staticClass: "icon-form" }, [
+                      _vm._v("home")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: {
+                        label: "Email Address",
+                        type: "text",
+                        outlined: ""
                       },
-                      expression: "form.email"
-                    }
-                  })
-                ],
-                1
-              )
+                      model: {
+                        value: _vm.form.email,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "email", $$v)
+                        },
+                        expression: "form.email"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
             ],
             1
           ),
@@ -57439,33 +57500,39 @@ var render = function() {
           _c(
             "v-row",
             [
-              _c(
-                "v-col",
-                { attrs: { cols: "12", sm: "6" } },
-                [
-                  _c("v-text-field", {
-                    attrs: {
-                      label: "Password",
-                      type: _vm.show ? "text" : "password",
-                      "append-icon": _vm.show ? "mdi-eye" : "mdi-eye-off",
-                      outlined: ""
-                    },
-                    on: {
-                      "click:append": function($event) {
-                        _vm.show = !_vm.show
-                      }
-                    },
-                    model: {
-                      value: _vm.form.password,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "password", $$v)
+              _c("v-col", { attrs: { cols: "12", sm: "6" } }, [
+                _c(
+                  "div",
+                  { staticClass: "d-flex" },
+                  [
+                    _c("v-icon", { staticClass: "icon-form" }, [
+                      _vm._v("home")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      attrs: {
+                        label: "Password",
+                        type: _vm.show ? "text" : "password",
+                        "append-icon": _vm.show ? "mdi-eye" : "mdi-eye-off",
+                        outlined: ""
                       },
-                      expression: "form.password"
-                    }
-                  })
-                ],
-                1
-              )
+                      on: {
+                        "click:append": function($event) {
+                          _vm.show = !_vm.show
+                        }
+                      },
+                      model: {
+                        value: _vm.form.password,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "password", $$v)
+                        },
+                        expression: "form.password"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
             ],
             1
           ),
@@ -57482,7 +57549,7 @@ var render = function() {
                     { attrs: { color: "green", type: "submit" } },
                     [
                       _c("v-icon", [_vm._v("home")]),
-                      _vm._v(" Login\n        ")
+                      _vm._v("\n                    Login\n                ")
                     ],
                     1
                   )
@@ -57799,7 +57866,7 @@ var render = function() {
           on: {
             submit: function($event) {
               $event.preventDefault()
-              return _vm.create($event)
+              return _vm.submit($event)
             }
           }
         },
@@ -57809,7 +57876,7 @@ var render = function() {
             [
               _c(
                 "v-col",
-                { attrs: { cols: "12", sm: "6" } },
+                { attrs: { col: "12", sm: "6" } },
                 [
                   _c("v-text-field", {
                     attrs: {
@@ -57845,9 +57912,41 @@ var render = function() {
                 "v-col",
                 { attrs: { cols: "12", sm: "6" } },
                 [
-                  _c("v-btn", { attrs: { color: "green", type: "submit" } }, [
-                    _vm._v("\n                    Create\n                ")
-                  ])
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: {
+                        color: _vm.action ? "green" : "red",
+                        type: "submit"
+                      }
+                    },
+                    [
+                      _c("span", {
+                        domProps: {
+                          innerHTML: _vm._s(_vm.action ? "Create" : "Update")
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  !_vm.action
+                    ? _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "yellow" },
+                          on: {
+                            click: function($event) {
+                              return _vm.cancel()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Cancel\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -57858,109 +57957,136 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("hr", { staticClass: "mt-5 pb-5" }),
-      _vm._v(" "),
-      _c(
-        "v-card",
-        { staticClass: "mx-auto mt-5" },
-        [
-          _c(
-            "v-toolbar",
-            { attrs: { color: "indigo", dark: "" } },
+      _vm.action
+        ? _c(
+            "div",
             [
-              _c("v-app-bar-nav-icon"),
+              _c("hr", { staticClass: "mt-5 pb-5" }),
               _vm._v(" "),
-              _c("v-toolbar-title", [_vm._v("All Forum Categories")]),
-              _vm._v(" "),
-              _c("v-spacer")
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list",
-            _vm._l(_vm.categories, function(category, index) {
-              return _c(
-                "div",
-                { key: category.id },
+              _c(
+                "v-card",
+                { staticClass: "mx-auto mt-5" },
                 [
                   _c(
-                    "v-list-item",
-                    { on: { click: function($event) {} } },
+                    "v-toolbar",
+                    { attrs: { color: "indigo", dark: "" } },
                     [
-                      false
-                        ? undefined
-                        : _vm._e(),
+                      _c("v-app-bar-nav-icon"),
                       _vm._v(" "),
-                      _c(
-                        "v-list-item-content",
-                        [
-                          _c("v-list-item-title", {
-                            domProps: { textContent: _vm._s(category.name) }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("v-toolbar-title", [_vm._v("All Forum Categories")]),
                       _vm._v(" "),
-                      _c(
-                        "v-list-tile-action",
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "ma-2",
-                              attrs: {
-                                fab: "",
-                                outlined: "",
-                                small: "",
-                                color: "orange"
-                              },
-                              on: { click: _vm.edit }
-                            },
-                            [_c("v-icon", [_vm._v("mdi-pencil")])],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "ma-2",
-                              attrs: {
-                                fab: "",
-                                outlined: "",
-                                small: "",
-                                color: "red"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.destroy(category.slug, index)
-                                }
-                              }
-                            },
-                            [_c("v-icon", [_vm._v("mdi-delete-forever")])],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      false
-                        ? undefined
-                        : _vm._e()
+                      _c("v-spacer")
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c("v-divider")
+                  _vm.categories.length > 0
+                    ? _c(
+                        "v-list",
+                        _vm._l(_vm.categories, function(category, index) {
+                          return _c(
+                            "div",
+                            { key: category.id },
+                            [
+                              _c(
+                                "v-list-item",
+                                { on: { click: function($event) {} } },
+                                [
+                                  false
+                                    ? undefined
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-list-item-content",
+                                    [
+                                      _c("v-list-item-title", {
+                                        domProps: {
+                                          textContent: _vm._s(category.name)
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "ma-2",
+                                          attrs: {
+                                            fab: "",
+                                            outlined: "",
+                                            small: "",
+                                            color: "orange"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.edit(index)
+                                            }
+                                          }
+                                        },
+                                        [_c("v-icon", [_vm._v("mdi-pencil")])],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "ma-2",
+                                          attrs: {
+                                            fab: "",
+                                            outlined: "",
+                                            small: "",
+                                            color: "red"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.destroy(
+                                                category.slug,
+                                                index
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("v-icon", [
+                                            _vm._v("mdi-delete-forever")
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  false
+                                    ? undefined
+                                    : _vm._e()
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-divider")
+                            ],
+                            1
+                          )
+                        }),
+                        0
+                      )
+                    : _c("v-list", [
+                        _c("div", { staticClass: "text-center" }, [
+                          _vm._v("Ouff !!!! No data avalaible in this moment. ")
+                        ])
+                      ])
                 ],
                 1
               )
-            }),
-            0
+            ],
+            1
           )
-        ],
-        1
-      )
+        : _vm._e()
     ],
     1
   )
@@ -115652,8 +115778,9 @@ var AppStorage = /*#__PURE__*/function () {
     }
   }, {
     key: "storeUser",
-    value: function storeUser(user) {
+    value: function storeUser(user, role) {
       localStorage.setItem('user', user);
+      localStorage.setItem('role', role);
     }
   }, {
     key: "getToken",
@@ -115666,16 +115793,22 @@ var AppStorage = /*#__PURE__*/function () {
       return localStorage.getItem('user');
     }
   }, {
+    key: "getRole",
+    value: function getRole() {
+      return localStorage.getItem('role');
+    }
+  }, {
     key: "store",
-    value: function store(token, user) {
+    value: function store(token, user, role) {
       this.storeToken(token);
-      this.storeUser(user);
+      this.storeUser(user, role);
     }
   }, {
     key: "clear",
     value: function clear() {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('role');
     }
   }]);
 
@@ -115778,9 +115911,10 @@ var User = /*#__PURE__*/function () {
     value: function checkAccessUser(response) {
       var access_token = response.data.access_token;
       var username = response.data.user;
+      var role = response.data.role;
 
       if (_Token__WEBPACK_IMPORTED_MODULE_0__["default"].isValid(access_token)) {
-        _AppStorage__WEBPACK_IMPORTED_MODULE_1__["default"].store(access_token, username);
+        _AppStorage__WEBPACK_IMPORTED_MODULE_1__["default"].store(access_token, username, role);
         window.location.href = '/forum';
       }
     }
@@ -115825,6 +115959,15 @@ var User = /*#__PURE__*/function () {
     key: "isAuthorizedActions",
     value: function isAuthorizedActions(id) {
       return this.getIdUser() === id ? true : false;
+    }
+  }, {
+    key: "isAuthorized",
+    value: function isAuthorized() {
+      if (this.isLogged()) {
+        return _AppStorage__WEBPACK_IMPORTED_MODULE_1__["default"].getRole() === 'USER' ? false : true;
+      }
+
+      return false;
     }
   }]);
 
