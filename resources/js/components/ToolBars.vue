@@ -2,6 +2,7 @@
     <v-toolbar>
         <v-toolbar-title>Real Time Forum</v-toolbar-title>
         <v-spacer></v-spacer>
+        <notifications v-if="isLogged"></notifications>
         <div class="hidden-sm-and-down">
             <router-link
                     v-for="item in items"
@@ -25,7 +26,9 @@
 </template>
 
 <script>
+    import Notifications from "./site/notifications/Notifications";
     export default {
+        components: {Notifications},
         data() {
             return {
                 isLogged: User.isLogged(),

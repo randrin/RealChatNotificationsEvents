@@ -21678,6 +21678,11 @@ button:focus {
   height: 80px !important;
 }
 
+.forum-notifications-empty {
+  margin: 15px 30px;
+  text-align: center;
+}
+
 .forum-likes-wrapper {
   right: 20px;
   position: absolute;
@@ -21693,6 +21698,19 @@ button:focus {
   background: #ff5722 !important;
   color: white;
   font-weight: 600;
+}
+
+.forum-notifications-wrapper .forum-notifications-count {
+  top: -14px;
+  left: -15px;
+  position: relative;
+  border: 1px solid white;
+  border-radius: 100%;
+  padding: 3px 0 0 0px;
+  width: 25px;
+  color: white;
+  height: 25px;
+  background: #f44336;
 }
 
 /*!
