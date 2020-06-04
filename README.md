@@ -26,6 +26,7 @@ Experimentation of real notifications, events and chat with Laravel, Pusher, Web
 - **Authentification, Sign Up, Login*
 - **CRUD Front End Questions**
 - **CRUD Front End Categories**
+- **CRUD Front End Replies**
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
 - Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
 - Database agnostic [schema migrations](https://laravel.com/docs/migrations).

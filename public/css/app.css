@@ -21659,8 +21659,23 @@ hr {
   margin: 0rem !important;
 }
 
+button:focus {
+  outline: none !important;
+}
+
 .icon-form {
   margin: -30px 15px 0 0;
+}
+
+#toTop {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: none;
+}
+
+.forum {
+  height: 80px !important;
 }
 
 /*!

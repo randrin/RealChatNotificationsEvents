@@ -6,6 +6,9 @@
                 <v-btn color="green" type="submit">
                     Submit Reply
                 </v-btn>
+                <v-btn color="yellow" @click="cancel">
+                    Cancel
+                </v-btn>
             </v-col>
         </v-form>
     </v-container>
@@ -28,11 +31,14 @@
         methods: {
             submit() {
                 axios.post(`/api/question/${this.question}/reply`, {body: this.body})
-                    .then((response) =>
-                        this.body == '',
+                    .then((response) => {
+                        this.body == ''
                         EventBus.$emit('newReply', response.data.reply)
-                    )
+                    })
                     .catch((error) => console.log(error.response.data))
+            },
+            cancel() {
+                EventBus.$emit('cancelReply');
             }
         }
     }

@@ -27,13 +27,13 @@
                     <v-icon>mdi-delete-forever</v-icon>
                 </v-btn>
             </v-card-actions>
-            <div v-else>
+            <div v-else-if="showReply">
                 <v-btn @click="reply" class="ma-2" fab outlined small color="yellow">
                     <v-icon>mdi-reply-all-outline</v-icon>
                 </v-btn>
             </div>
         </v-card>
-        <Replies :replies="question.replies" :title="question.title" v-if="showReply"></Replies>
+        <Replies :question="question" :title="question.title" v-if="showReply"></Replies>
         <create-reply v-else :question="question.slug"></create-reply>
     </div>
 </template>
@@ -52,9 +52,14 @@
                 showReply: true
             }
         },
-        computed() {
-            this.body();
-            this.loadReplies()
+        computed: {
+            body() {
+                return md.parse(this.data.body);
+            }
+        },
+        created() {
+            this.loadReplies();
+            this.cancelReply();
         },
         methods: {
             destroy() {
@@ -70,11 +75,13 @@
             },
             loadReplies() {
                 EventBus.$on('newReply', (reply) => {
-                    this.question.unshift(reply);
+                    this.showReply = true;
                 })
             },
-            body() {
-                return md.parse(this.data.body);
+            cancelReply() {
+                EventBus.$on('cancelReply', () => {
+                    this.showReply = true;
+                })
             }
         }
     }

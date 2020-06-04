@@ -1,7 +1,8 @@
 <template>
     <v-container>
         <h2>All Replies About <span class="text-danger">{{title}}</span></h2>
-        <reply v-for="reply in replies" :key="replies.id" :reply="reply" v-if="showReply"></reply>
+        <reply v-for="(reply, index) in allReplies" :key="reply.id" :reply="reply" :index="index"
+               v-if="showReply"></reply>
         <create-reply v-else></create-reply>
     </v-container>
 </template>
@@ -12,11 +13,29 @@
 
     export default {
         name: "Replies",
-        props: ["replies", "title"],
+        props: ["question", "title"],
         components: {CreateReply, Reply},
         data() {
             return {
+                allReplies: this.question.replies,
                 showReply: true
+            }
+        },
+        created() {
+            this.loadReplies()
+        },
+        methods: {
+            loadReplies() {
+                EventBus.$on('newReply', (reply) => {
+                    this.allReplies.unshift(reply);
+                });
+                EventBus.$on('destroyReply', (index) => {
+                    axios.delete(`/api/question/${this.question.slug}/reply/${this.allReplies[index].id}`)
+                        .then((response) => {
+                            this.allReplies.splice(index, 1);
+                        })
+                        .catch((error) => console.log(error.response.data))
+                });
             }
         }
     }
