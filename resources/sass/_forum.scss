@@ -11,6 +11,7 @@
 hr {
   margin: 0rem !important;
 }
+
 button:focus {
   outline: none !important;
 }
@@ -29,3 +30,21 @@ button:focus {
 .forum {
   height: 80px !important;
 }
+
+.forum-likes-wrapper {
+  right: 20px;
+  position: absolute;
+  float: right;
+
+  .forum-likes-count {
+    border: 1px solid #ff5722 !important;
+    padding: 5px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background: #ff5722 !important;
+    color: white;
+    font-weight: 600;
+  }
+}
+

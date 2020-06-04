@@ -11,6 +11,7 @@
                         <v-list-item-subtitle><span class="text-danger">{{reply.created_at}}</span>
                         </v-list-item-subtitle>
                     </v-list-item-content>
+                    <likes :reply="reply"></likes>
                 </div>
                 <v-spacer></v-spacer>
             </v-list-item>
@@ -31,9 +32,11 @@
 
 <script>
     import EditReply from "./EditReply";
+    import Likes from "../likes/Likes";
+
     export default {
         name: "Reply",
-        components: {EditReply},
+        components: {Likes, EditReply},
         props: ["reply", "index"],
         data() {
             return {

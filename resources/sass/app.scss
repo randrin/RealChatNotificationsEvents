@@ -4,7 +4,11 @@
 // Variables
 @import 'variables';
 
+// Forums Styles Sass
 @import 'forum';
+
+// Forums Responsive Devices Sass
+@import 'mixins';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
