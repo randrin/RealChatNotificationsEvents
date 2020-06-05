@@ -42,8 +42,8 @@ window.Echo = new Echo({
     key: 'd7e687dcaeea5176be52',
     cluster: 'eu',
     encrypted: true,
-    auth: {
-            headers: {
+    auth:{
+            headers:{
                 Authorization: token
             }
         }

@@ -23,7 +23,7 @@ Experimentation of real notifications, events and chat with Laravel, Pusher, Web
 - **Installation [Vue Router](https://router.vuejs.org/guide/#javascript) and configuration**
 - **Vue Login Page and call authentification Api**
 - **Login and Logout Security Token**
-- **Authentification, Sign Up, Login*
+- **Authentification, Sign Up, Login**
 - **CRUD Front End Questions**
 - **CRUD Front End Categories**
 - **CRUD Front End Replies**

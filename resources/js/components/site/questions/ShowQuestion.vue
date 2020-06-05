@@ -8,29 +8,33 @@
                         <v-list-item-title class="headline">
                             {{question.title}}
                         </v-list-item-title>
-                        <v-list-item-subtitle>By {{question.user}}, <span class="text-danger">{{question.created_at}}</span>
+                        <v-list-item-subtitle>By {{question.user}}, <span
+                                class="text-danger">{{question.created_at}}</span>
                         </v-list-item-subtitle>
                     </v-list-item-content>
                 </div>
                 <v-spacer></v-spacer>
                 <v-chip class="ma-2" color="green" text-color="white">
-                    <v-avatar left class="green darken-4">{{question.repliesCount}}</v-avatar> Replies
+                    <v-avatar left class="green darken-4">{{question.repliesCount}}</v-avatar>
+                    Replies
                 </v-chip>
             </v-list-item>
             <v-card-text v-html="body">
             </v-card-text>
-            <v-card-actions v-if="showActions">
-                <v-btn @click="edit" class="ma-2" fab outlined small color="orange">
-                    <v-icon>mdi-pencil</v-icon>
-                </v-btn>
-                <v-btn @click="destroy" class="ma-2" fab outlined small color="red">
-                    <v-icon>mdi-delete-forever</v-icon>
-                </v-btn>
-            </v-card-actions>
-            <div v-else-if="showReply">
-                <v-btn @click="reply" class="ma-2" fab outlined small color="yellow">
-                    <v-icon>mdi-reply-all-outline</v-icon>
-                </v-btn>
+            <div v-if="userIsLogged">
+                <v-card-actions v-if="showActions">
+                    <v-btn @click="edit" class="ma-2" fab outlined small color="orange">
+                        <v-icon>mdi-pencil</v-icon>
+                    </v-btn>
+                    <v-btn @click="destroy" class="ma-2" fab outlined small color="red">
+                        <v-icon>mdi-delete-forever</v-icon>
+                    </v-btn>
+                </v-card-actions>
+                <div v-else-if="showReply">
+                    <v-btn @click="reply" class="ma-2" fab outlined small color="yellow">
+                        <v-icon>mdi-reply-all-outline</v-icon>
+                    </v-btn>
+                </div>
             </div>
         </v-card>
         <Replies :question="question" :title="question.title" v-if="showReply"></Replies>
@@ -41,6 +45,7 @@
 <script>
     import Replies from "../replies/Replies";
     import CreateReply from "../replies/CreateReply";
+
     export default {
         name: "ShowQuestion",
         components: {CreateReply, Replies},
@@ -49,6 +54,7 @@
             return {
                 question: this.data,
                 showActions: User.isAuthorizedActions(this.data.user_id),
+                userIsLogged: User.isLogged(),
                 showReply: true
             }
         },
