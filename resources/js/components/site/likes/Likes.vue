@@ -13,7 +13,7 @@
         props: ["reply"],
         data() {
             return {
-                isLiked: this.reply.likes.isLiked,
+                isLiked: this.reply.isLiked,
                 count: this.reply.likes
             }
         },
@@ -22,10 +22,21 @@
                 return this.isLiked ? 'deep-orange' : 'deep-orange lighten-4';
             }
         },
+        created() {
+            Echo.channel('LikeChannel').listen('LikeEvent', (e) => {
+                if(this.reply.id === e.id) {
+                    e.type == 1 ? this.count++ : this.count--;
+                }
+            })
+        },
         methods: {
             likeIt() {
-                this.isLiked ? this.decrementLike() : this.incrementLike();
-                this.isLiked != this.isLiked;
+                if(User.isLogged()) {
+                    this.isLiked ? this.decrementLike() : this.incrementLike();
+                    this.isLiked = !this.isLiked;
+                } else {
+                    console.log('Open Modal to advise User to Login')
+                }
             },
             incrementLike() {
                 axios.post(`/api/like/${this.reply.id}`)

@@ -38,6 +38,11 @@
             if (User.isLogged()) {
                 this.getNotifications();
             }
+            Echo.private('App.User.' + User.getIdUser())
+                .notification((notification) => {
+                    this.unread.unshift(notification);
+                    ths.unreadCount++;
+                });
         },
         methods: {
             getNotifications() {

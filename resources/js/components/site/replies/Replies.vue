@@ -36,6 +36,17 @@
                         })
                         .catch((error) => console.log(error.response.data))
                 });
+                Echo.private('App.User.' + User.getIdUser())
+                    .notification((notification) => {
+                        this.allReplies.unshift(notification.reply);
+                    });
+                Echo.channel('DeleteReplyChannel').listen('DeleteReplyEvent', (e) => {
+                    this.allReplies.forEach((reply) => {
+                        if(reply.id === e.id) {
+                            this.allReplies.splice(reply, 1)
+                        }
+                    })
+                })
             }
         }
     }
