@@ -2729,6 +2729,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _apis_Exception__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../apis/Exception */ "./resources/js/apis/Exception.js");
 //
 //
 //
@@ -2755,6 +2756,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Notifications",
   data: function data() {
@@ -2786,7 +2788,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.unread = response.data.unread;
         _this2.unreadCount = response.data.unread.length;
       })["catch"](function (error) {
-        return console.log(error.response.data);
+        return _apis_Exception__WEBPACK_IMPORTED_MODULE_0__["default"].handleError(error);
       });
     },
     readNotification: function readNotification(notification) {
@@ -3159,6 +3161,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3184,6 +3195,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.loadReplies();
     this.cancelReply();
+    this.destroyReply();
   },
   methods: {
     destroy: function destroy() {
@@ -3205,7 +3217,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       EventBus.$on('newReply', function (reply) {
+        _this2.question.repliesCount++;
         _this2.showReply = true;
+      });
+      Echo["private"]('App.User.' + User.getIdUser()).notification(function (notification) {
+        _this2.question.repliesCount++;
       });
     },
     cancelReply: function cancelReply() {
@@ -3213,6 +3229,16 @@ __webpack_require__.r(__webpack_exports__);
 
       EventBus.$on('cancelReply', function () {
         _this3.showReply = true;
+      });
+    },
+    destroyReply: function destroyReply() {
+      var _this4 = this;
+
+      EventBus.$on('destroyReply', function () {
+        _this4.question.repliesCount--;
+      });
+      Echo.channel('DeleteReplyChannel').listen('DeleteReplyEvent', function (e) {
+        _this4.question.repliesCount--;
       });
     }
   }
@@ -65448,6 +65474,39 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      !_vm.userIsLogged
+        ? _c(
+            "div",
+            { staticClass: "container-fluid" },
+            [
+              _c(
+                "div",
+                { staticClass: "row" },
+                [
+                  _c("h4", { staticClass: "my-8" }, [
+                    _vm._v("Need to reply this post? ")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { staticClass: "ml-5 my-6", attrs: { to: "/login" } },
+                    [
+                      _c("v-btn", { attrs: { color: "red" } }, [
+                        _vm._v("Login")
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-divider")
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _vm.showReply
         ? _c("Replies", {
             attrs: { question: _vm.question, title: _vm.question.title }
@@ -122918,6 +122977,50 @@ var AppStorage = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/apis/Exception.js":
+/*!****************************************!*\
+  !*** ./resources/js/apis/Exception.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./User */ "./resources/js/apis/User.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Exception = /*#__PURE__*/function () {
+  function Exception() {
+    _classCallCheck(this, Exception);
+  }
+
+  _createClass(Exception, [{
+    key: "handleError",
+    value: function handleError(error) {
+      this.isExpired(error.response.data.error);
+    }
+  }, {
+    key: "isExpired",
+    value: function isExpired(error) {
+      if (error === 'Token expired, try another connexion') {
+        _User__WEBPACK_IMPORTED_MODULE_0__["default"].isLogout();
+      }
+    }
+  }]);
+
+  return Exception;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Exception = new Exception());
+
+/***/ }),
+
 /***/ "./resources/js/apis/Token.js":
 /*!************************************!*\
   !*** ./resources/js/apis/Token.js ***!
@@ -122958,7 +123061,20 @@ var Token = /*#__PURE__*/function () {
   }, {
     key: "decode",
     value: function decode(payload) {
-      return JSON.parse(atob(payload));
+      if (this.isBase64(payload)) {
+        return JSON.parse(atob(payload));
+      }
+
+      return false;
+    }
+  }, {
+    key: "isBase64",
+    value: function isBase64(str) {
+      try {
+        return btoa(atob(str)).replace(/=/g, "") == str;
+      } catch (err) {
+        return false;
+      }
     }
   }]);
 
@@ -123023,7 +123139,7 @@ var User = /*#__PURE__*/function () {
       var storeToken = _AppStorage__WEBPACK_IMPORTED_MODULE_1__["default"].getToken();
 
       if (storeToken) {
-        return _Token__WEBPACK_IMPORTED_MODULE_0__["default"].isValid(storeToken) ? true : false;
+        return _Token__WEBPACK_IMPORTED_MODULE_0__["default"].isValid(storeToken) ? true : this.isLogout();
       }
 
       return false;
@@ -123094,7 +123210,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var marked__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! marked */ "./node_modules/marked/lib/marked.js");
 /* harmony import */ var marked__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(marked__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _apis_User__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./apis/User */ "./resources/js/apis/User.js");
-/* harmony import */ var _components_routers_routers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/routers/routers */ "./resources/js/components/routers/routers.js");
+/* harmony import */ var _apis_Exception__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./apis/Exception */ "./resources/js/apis/Exception.js");
+/* harmony import */ var _components_routers_routers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/routers/routers */ "./resources/js/components/routers/routers.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -123129,6 +123246,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-home', __webpack_requi
 
 
 window.User = _apis_User__WEBPACK_IMPORTED_MODULE_4__["default"];
+
+window.Exception = _apis_Exception__WEBPACK_IMPORTED_MODULE_5__["default"];
 window.EventBus = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -123136,7 +123255,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   hashbang: false,
   vuetify: new vuetify__WEBPACK_IMPORTED_MODULE_1___default.a(),
   mode: 'history',
-  router: _components_routers_routers__WEBPACK_IMPORTED_MODULE_5__["default"]
+  router: _components_routers_routers__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 /***/ }),

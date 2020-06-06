@@ -25,6 +25,8 @@
 </template>
 
 <script>
+    import Exception from "../../../apis/Exception";
+
     export default {
         name: "Notifications",
         data() {
@@ -52,7 +54,7 @@
                         this.unread = response.data.unread;
                         this.unreadCount = response.data.unread.length;
                     })
-                    .catch((error) => console.log(error.response.data))
+                    .catch((error) => Exception.handleError(error))
             },
             readNotification(notification) {
                 axios.post('/api/markAsRead', {id: notification.id})

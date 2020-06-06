@@ -15,7 +15,6 @@ Vue.use(Vuetify);
 import VueSimplemde from 'vue-simplemde';
 Vue.use(VueSimplemde);
 
-
 import md from 'marked';
 window.md = md;
 
@@ -41,6 +40,10 @@ Vue.component('app-home', require('./components/AppHome.vue').default);
 
 import User from './apis/User';
 window.User = User;
+
+import Exception from './apis/Exception';
+window.Exception = Exception;
+
 window.EventBus = new Vue();
 
 import routers from './components/routers/routers';

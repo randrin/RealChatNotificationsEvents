@@ -37,6 +37,15 @@
                 </div>
             </div>
         </v-card>
+        <div class="container-fluid" v-if="!userIsLogged">
+            <div class="row">
+                <h4 class="my-8">Need to reply this post? </h4>
+                <router-link to="/login" class="ml-5 my-6">
+                    <v-btn color="red">Login</v-btn>
+                </router-link>
+            </div>
+            <v-divider></v-divider>
+        </div>
         <Replies :question="question" :title="question.title" v-if="showReply"></Replies>
         <create-reply v-else :question="question.slug"></create-reply>
     </div>
@@ -66,6 +75,7 @@
         created() {
             this.loadReplies();
             this.cancelReply();
+            this.destroyReply();
         },
         methods: {
             destroy() {
@@ -81,13 +91,26 @@
             },
             loadReplies() {
                 EventBus.$on('newReply', (reply) => {
+                    this.question.repliesCount++;
                     this.showReply = true;
-                })
+                });
+                Echo.private('App.User.' + User.getIdUser())
+                    .notification((notification) => {
+                        this.question.repliesCount++;
+                    });
             },
             cancelReply() {
                 EventBus.$on('cancelReply', () => {
                     this.showReply = true;
-                })
+                });
+            },
+            destroyReply() {
+                EventBus.$on('destroyReply', () => {
+                    this.question.repliesCount--;
+                });
+                Echo.channel('DeleteReplyChannel').listen('DeleteReplyEvent', (e) => {
+                    this.question.repliesCount--;
+                });
             }
         }
     }
