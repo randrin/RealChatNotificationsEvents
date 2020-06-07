@@ -13,7 +13,6 @@
         <v-app>
             <app-home></app-home>
         </v-app>
-      </div>
     </div>
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('assets/js/forum.js')}}"></script>

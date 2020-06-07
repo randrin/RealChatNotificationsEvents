@@ -33,7 +33,8 @@
             return {
                 read: {},
                 unread: {},
-                unreadCount: 0
+                unreadCount: 0,
+                soundNotifications: 'http://soundbible.com/mp3/Music_Box-Big_Daddy-1389738694.mp3'
             }
         },
         created() {
@@ -42,11 +43,16 @@
             }
             Echo.private('App.User.' + User.getIdUser())
                 .notification((notification) => {
+                    this.playSound();
                     this.unread.unshift(notification);
                     this.unreadCount++;
                 });
         },
         methods: {
+            playSound() {
+                let alert = new Audio(this.soundNotifications);
+                alert.play();
+            },
             getNotifications() {
                 axios.post('/api/notifications')
                     .then((response) => {

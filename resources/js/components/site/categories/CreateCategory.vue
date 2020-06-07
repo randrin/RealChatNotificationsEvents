@@ -1,7 +1,7 @@
 <template>
     <v-container fluid class="my-5">
-        <h2 class="text-center">Add New Category</h2>
-        <v-form @submit.prevent="submit">
+        <h2 class="text-center">All Categories</h2>
+        <v-form @submit.prevent="submit" v-if="checkAuthorizaion">
             <v-row>
                 <v-col col="12" sm="6">
                     <v-text-field
@@ -15,7 +15,7 @@
             </v-row>
             <v-row>
                 <v-col cols="12" sm="6">
-                    <v-btn :color="action ? 'green' : 'red'" type="submit">
+                    <v-btn :color="action ? 'green' : 'red'" type="submit" :disabled="!checkValidation">
                         <span v-html="action ? 'Create' : 'Update'"></span>
                     </v-btn>
                     <v-btn v-if="!action" color="yellow" @click="cancel()">
@@ -73,6 +73,7 @@
         name: "CreateCategory",
         data() {
             return {
+                checkAuthorizaion: User.isAuthorized(),
                 action: true,
                 form: {
                     name: null,
@@ -80,6 +81,11 @@
                 },
                 categories: [],
                 errors: []
+            }
+        },
+        computed: {
+            checkValidation() {
+                return this.form.name ? true : false;
             }
         },
         methods: {
@@ -102,7 +108,7 @@
                         this.categories.unshift(response.data);
                         this.form.name = null;
                     })
-                    .catch((error) => this.errors = error.response.data)
+                    .catch((error) => this.errors = error.response.data.errors)
             },
             edit(index) {
                 this.action = false;

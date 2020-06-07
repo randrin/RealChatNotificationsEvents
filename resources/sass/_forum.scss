@@ -8,6 +8,10 @@
   width: 10px;
 }
 
+a:hover {
+  text-decoration: none !important;
+}
+
 hr {
   margin: 0rem !important;
 }
@@ -65,6 +69,13 @@ button:focus {
     color: white;
     height: 25px;
     background: #f44336;
+  }
+}
+
+.forum-home-wrapper {
+  .forum-home-title {
+    text-shadow: rgb(150, 150, 150) 4px 4px 2px;
+    text-transform: uppercase;
   }
 }
 

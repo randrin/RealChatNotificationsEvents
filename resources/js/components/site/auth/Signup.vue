@@ -53,7 +53,7 @@
             </v-row>
             <v-row>
                 <v-col cols="12" sm="6">
-                    <v-btn color="green" type="submit">
+                    <v-btn color="green" type="submit" :disabled="!checkValidation">
                         <v-icon color="white">home</v-icon>
                         Sign Up
                     </v-btn>
@@ -75,6 +75,11 @@
                     password_confirmation: null
                 },
                 errors: {}
+            }
+        },
+        computed: {
+            checkValidation() {
+                return (this.form.name && this.form.email && this.form.password && this.form.password_confirmation) ? true : false;
             }
         },
         created() {

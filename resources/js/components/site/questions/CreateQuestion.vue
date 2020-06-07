@@ -37,7 +37,7 @@
             </v-row>
             <v-row>
                 <v-col cols="12" sm="6">
-                    <v-btn color="green" type="submit">
+                    <v-btn color="green" :disabled="!checkValidation" type="submit">
                         Create
                     </v-btn>
                 </v-col>
@@ -64,6 +64,11 @@
                 errors: []
             }
         },
+        computed: {
+            checkValidation() {
+                return (this.form.title && this.form.body && this.form.category_id) ? true : false;
+            }
+        },
         created() {
             this.loadCatgories();
         },
@@ -76,7 +81,7 @@
             create() {
                 axios.post('/api/question', this.form)
                     .then((response) => this.$router.push(response.data.path))
-                    .catch((error) => this.errors = error.response.data)
+                    .catch((error) => this.errors = error.response.data.errors)
             }
         }
     }

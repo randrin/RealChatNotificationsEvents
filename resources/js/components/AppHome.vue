@@ -1,10 +1,10 @@
 <template>
-  <div>
-      <toolbar></toolbar>
-      <router-view></router-view>
-      <app-footer></app-footer>
-      <scroll-to-top></scroll-to-top>
-  </div>
+    <div>
+        <toolbar></toolbar>
+        <router-view></router-view>
+        <app-footer></app-footer>
+        <scroll-to-top></scroll-to-top>
+    </div>
 </template>
 
 <script>
@@ -14,6 +14,7 @@
     import ScrollToTop from "./ScrollToTop";
 
     export default {
+        name: "AppForum",
         components: {ScrollToTop, toolbar, AppFooter, login }
     }
 </script>

@@ -32,7 +32,7 @@
             </v-row>
             <v-row>
                 <v-col cols="12" sm="6">
-                    <v-btn color="green" type="submit">
+                    <v-btn color="green" type="submit" :disabled="!checkValidation">
                         <v-icon>home</v-icon>
                         Login
                     </v-btn>
@@ -51,6 +51,11 @@
                     email: null,
                     password: null
                 }
+            }
+        },
+        computed: {
+            checkValidation() {
+                return (this.form.email && this.form.password) ? true : false;
             }
         },
         created() {

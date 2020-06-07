@@ -1,6 +1,8 @@
 <template>
     <v-toolbar>
-        <v-toolbar-title>Real Time Forum</v-toolbar-title>
+        <v-toolbar-title>
+            <router-link to="/">Kazou Forum</router-link>
+        </v-toolbar-title>
         <v-spacer></v-spacer>
         <notifications v-if="isLogged"></notifications>
         <div class="hidden-sm-and-down">
@@ -36,7 +38,7 @@
                 items: [
                     {title: 'Forum', to: '/forum', show: true},
                     {title: 'Ask Question', to: '/ask/question', show: User.isLogged()},
-                    {title: 'Add Category', to: '/create/category', show: User.isLogged() && User.isAuthorized()},
+                    {title: 'All Categories', to: '/create/category', show: User.isLogged()},
                     {title: 'Login', to: '/login', show: !User.isLogged()},
                     {title: 'Logout', to: '/logout', show: User.isLogged() , color: 'green'},
                     {title: 'Sign Up', to: '/signup', show: !User.isLogged(), color: 'green'}

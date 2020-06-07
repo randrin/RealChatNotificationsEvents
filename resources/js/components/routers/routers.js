@@ -9,10 +9,12 @@ import Logout from "../site/auth/Logout";
 import Question from "../site/questions/Question";
 import CreateQuestion from "../site/questions/CreateQuestion";
 import CreateCategory from "../site/categories/CreateCategory";
+import AppForum from "../AppForum";
 
 Vue.use(VueRouter);
 
 const routes = [
+    { path: '/', component: AppForum, name: 'appForum' },
     { path: '/login', component: Login, name: 'login' },
     { path: '/logout', component: Logout, name: 'logout' },
     { path: '/signup', component: Signup, name: 'signup' },
