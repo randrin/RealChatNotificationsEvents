@@ -21685,6 +21685,22 @@ button:focus {
   text-align: center;
 }
 
+@media only screen and (min-width: 64em) {
+  .forum-login-wrapper .forum-login-container {
+    width: 50%;
+  }
+}
+
+.forum-toolbar-wrapper {
+  height: 80px !important;
+}
+
+.forum-toolbar-wrapper .v-toolbar__content .v-toolbar__title,
+.forum-toolbar-wrapper .v-toolbar__content .forum-toolbar-links {
+  top: 7px;
+  position: relative;
+}
+
 .forum-likes-wrapper {
   right: 20px;
   position: absolute;

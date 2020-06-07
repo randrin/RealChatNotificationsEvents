@@ -8,6 +8,14 @@
                 :key="question.title"
                 :data="question">
                 </questions>
+                <div v-if="meta.last_page != 1" class="mt-8 text-center">
+                    <v-pagination
+                            v-model="meta.current_page"
+                            :length="meta.last_page"
+                            circle
+                            @input="changePage">
+                    </v-pagination>
+                </div>
             </v-flex>
             <v-flex xs4>
                 <side-bar></side-bar>
@@ -19,22 +27,32 @@
 <script>
     import Questions from "../questions/Questions";
     import SideBar from "../../SideBar";
+    import Pagination from "../pagination/Pagination";
     export default {
         name: "Forum",
-        components: {SideBar, Questions},
+        components: {Pagination, SideBar, Questions},
         data() {
             return {
-                questions: []
+                questions: [],
+                errors: [],
+                meta: []
             }
         },
          created() {
             this.loadQuestions();
          },
         methods: {
-            loadQuestions() {
-                axios.get('/api/question')
-                    .then((response) => this.questions = response.data.data)
-                    .catch((error) => console.log(error.response.error))
+            loadQuestions(page) {
+                let url = page ? `/api/question?page=${page}` : '/api/question'
+                axios.get(url)
+                    .then((response) => {
+                        this.questions = response.data.data;
+                        this.meta = response.data.meta;
+                    })
+                    .catch((error) => this.errors = error.response.data.errors)
+            },
+            changePage(page) {
+                this.loadQuestions(page);
             }
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <toolbar></toolbar>
+        <toolbar class="forum-toolbar-wrapper"></toolbar>
         <router-view></router-view>
         <app-footer></app-footer>
         <scroll-to-top></scroll-to-top>

@@ -5,14 +5,17 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <notifications v-if="isLogged"></notifications>
-        <div class="hidden-sm-and-down">
+        <div class="forum-toolbar-links hidden-sm-and-down">
             <router-link
                     v-for="item in items"
                     :key="item.title"
                     :to="item.to"
                     v-if="item.show"
                     class="ml-3">
-                <v-btn :color="item.color">{{item.title}}</v-btn>
+                <v-btn :color="item.color">
+                    <v-icon>{{item.icon}}</v-icon>
+                    {{item.title}}
+                </v-btn>
             </router-link>
             <!--<v-chip
                     v-if="isLogged"
@@ -29,6 +32,7 @@
 
 <script>
     import Notifications from "./site/notifications/Notifications";
+
     export default {
         components: {Notifications},
         data() {
@@ -36,12 +40,12 @@
                 isLogged: User.isLogged(),
                 username: User.getUsername(),
                 items: [
-                    {title: 'Forum', to: '/forum', show: true},
+                    {title: 'Forum', to: '/forum', show: true, icon: 'mdi-forum'},
                     {title: 'Ask Question', to: '/ask/question', show: User.isLogged()},
                     {title: 'All Categories', to: '/create/category', show: User.isLogged()},
-                    {title: 'Login', to: '/login', show: !User.isLogged()},
-                    {title: 'Logout', to: '/logout', show: User.isLogged() , color: 'green'},
-                    {title: 'Sign Up', to: '/signup', show: !User.isLogged(), color: 'green'}
+                    {title: 'Login', to: '/login', show: !User.isLogged(), icon: 'mdi-login-variant'},
+                    {title: 'Logout', to: '/logout', show: User.isLogged(), color: 'green', icon: 'mdi-logout-variant'},
+                    {title: 'Sign Up', to: '/signup', show: !User.isLogged(), color: 'green', icon: 'mdi-account-plus'}
                 ]
             }
         },
