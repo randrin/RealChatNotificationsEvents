@@ -2,12 +2,13 @@
     <v-container fluid class="my-12 forum-login-wrapper">
         <h2 class="text-center">Welcome to Login Forum</h2>
         <v-alert v-if="errors" type="error" class="mt-10">
-            <span>Votre email et/ou mot de passes est(sont) incorrect(s). Si vous êtes sur le Forum </span><router-link to="signup">
-            <v-btn color="green">
-                <v-icon>mdi-account-plus</v-icon>
-                <span class="ml-2">Inscrivez-vous</span>
-            </v-btn>
-        </router-link>
+            <span>Votre Email et/ou Mot de Passe est(sont) incorrect(s). Si vous êtes sur le Forum </span>
+            <router-link to="signup">
+                <v-btn color="green">
+                    <v-icon>mdi-account-plus</v-icon>
+                    <span class="ml-2">Inscrivez-vous</span>
+                </v-btn>
+            </router-link>
         </v-alert>
         <v-form @submit.prevent="login">
             <v-container class="forum-login-container my-5">
