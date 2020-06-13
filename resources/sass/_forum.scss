@@ -48,6 +48,14 @@ button:focus {
   }
 }
 
+.forum-signup-wrapper {
+  .forum-signup-container {
+    @include large() {
+      width: 50%;
+    }
+  }
+}
+
 .forum-toolbar-wrapper {
   height: 80px !important;
   .v-toolbar__content {

@@ -50,6 +50,8 @@
                 </v-row>
             </v-container>
         </v-form>
+        <hr />
+        <p> New user on the forum? </p>
     </v-container>
 </template>
 

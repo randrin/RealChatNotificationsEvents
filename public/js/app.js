@@ -2299,6 +2299,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2371,6 +2374,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -64290,9 +64307,10 @@ var render = function() {
             [
               _c("span", [
                 _vm._v(
-                  "Votre email et/ou mot de passes est(sont) incorrect(s). Si vous êtes sur le Forum "
+                  "Votre Email et/ou Mot de Passe est(sont) incorrect(s). Si vous êtes sur le Forum "
                 )
               ]),
+              _vm._v(" "),
               _c(
                 "router-link",
                 { attrs: { to: "signup" } },
@@ -64441,7 +64459,11 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("p", [_vm._v(" New user on the forum? ")])
     ],
     1
   )
@@ -64494,7 +64516,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-container",
-    { staticClass: "my-5" },
+    { staticClass: "my-12 forum-signup-wrapper", attrs: { fluid: "" } },
     [
       _c("h2", { staticClass: "text-center" }, [
         _vm._v("Welcome to Sign Up Page")
@@ -64512,170 +64534,207 @@ var render = function() {
         },
         [
           _c(
-            "v-row",
+            "v-container",
+            { staticClass: "forum-signup-container my-5" },
             [
               _c(
-                "v-col",
-                { attrs: { cols: "12", sm: "6" } },
+                "v-row",
                 [
-                  _c("v-text-field", {
-                    attrs: { label: "Full Name", type: "text", outlined: "" },
-                    model: {
-                      value: _vm.form.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "name", $$v)
-                      },
-                      expression: "form.name"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.errors.name
-                    ? _c("span", { staticClass: "text-danger" }, [
-                        _vm._v(_vm._s(_vm.errors.name[0]))
-                      ])
-                    : _vm._e()
+                  _c("v-col", { attrs: { cols: "12" } }, [
+                    _c(
+                      "div",
+                      { staticClass: "d-flex" },
+                      [
+                        _c("v-icon", { staticClass: "icon-form" }, [
+                          _vm._v("mdi-email-check")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-text-field", {
+                          attrs: {
+                            label: "Full Name",
+                            type: "text",
+                            outlined: ""
+                          },
+                          model: {
+                            value: _vm.form.name,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "name", $$v)
+                            },
+                            expression: "form.name"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm.errors.name
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(_vm._s(_vm.errors.name[0]))
+                        ])
+                      : _vm._e()
+                  ])
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-row",
-            [
+              ),
+              _vm._v(" "),
               _c(
-                "v-col",
-                { attrs: { cols: "12", sm: "6" } },
+                "v-row",
                 [
-                  _c("v-text-field", {
-                    attrs: {
-                      label: "Email Address",
-                      type: "text",
-                      outlined: ""
-                    },
-                    model: {
-                      value: _vm.form.email,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "email", $$v)
-                      },
-                      expression: "form.email"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.errors.email
-                    ? _c("span", { staticClass: "text-danger" }, [
-                        _vm._v(_vm._s(_vm.errors.email[0]))
-                      ])
-                    : _vm._e()
+                  _c("v-col", { attrs: { cols: "12" } }, [
+                    _c(
+                      "div",
+                      { staticClass: "d-flex" },
+                      [
+                        _c("v-icon", { staticClass: "icon-form" }, [
+                          _vm._v("mdi-email-check")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-text-field", {
+                          attrs: {
+                            label: "Email Address",
+                            type: "text",
+                            outlined: ""
+                          },
+                          model: {
+                            value: _vm.form.email,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "email", $$v)
+                            },
+                            expression: "form.email"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm.errors.email
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(_vm._s(_vm.errors.email[0]))
+                        ])
+                      : _vm._e()
+                  ])
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-row",
-            [
+              ),
+              _vm._v(" "),
               _c(
-                "v-col",
-                { attrs: { cols: "12", sm: "6" } },
+                "v-row",
                 [
-                  _c("v-text-field", {
-                    attrs: {
-                      label: "Password",
-                      type: _vm.show ? "text" : "password",
-                      "append-icon": _vm.show ? "mdi-eye" : "mdi-eye-off",
-                      outlined: ""
-                    },
-                    on: {
-                      "click:append": function($event) {
-                        _vm.show = !_vm.show
-                      }
-                    },
-                    model: {
-                      value: _vm.form.password,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "password", $$v)
-                      },
-                      expression: "form.password"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.errors.password
-                    ? _c("span", { staticClass: "text-danger" }, [
-                        _vm._v(_vm._s(_vm.errors.password[0]))
-                      ])
-                    : _vm._e()
+                  _c("v-col", { attrs: { cols: "12" } }, [
+                    _c(
+                      "div",
+                      { staticClass: "d-flex" },
+                      [
+                        _c("v-icon", { staticClass: "icon-form" }, [
+                          _vm._v("mdi-email-check")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-text-field", {
+                          attrs: {
+                            label: "Password",
+                            type: _vm.show ? "text" : "password",
+                            "append-icon": _vm.show ? "mdi-eye" : "mdi-eye-off",
+                            outlined: ""
+                          },
+                          on: {
+                            "click:append": function($event) {
+                              _vm.show = !_vm.show
+                            }
+                          },
+                          model: {
+                            value: _vm.form.password,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "password", $$v)
+                            },
+                            expression: "form.password"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm.errors.password
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(_vm._s(_vm.errors.password[0]))
+                        ])
+                      : _vm._e()
+                  ])
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-row",
-            [
+              ),
+              _vm._v(" "),
               _c(
-                "v-col",
-                { attrs: { cols: "12", sm: "6" } },
+                "v-row",
                 [
-                  _c("v-text-field", {
-                    attrs: {
-                      label: "Password Confirmation",
-                      type: _vm.show ? "text" : "password",
-                      "append-icon": _vm.show ? "mdi-eye" : "mdi-eye-off",
-                      outlined: ""
-                    },
-                    on: {
-                      "click:append": function($event) {
-                        _vm.show = !_vm.show
-                      }
-                    },
-                    model: {
-                      value: _vm.form.password_confirmation,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "password_confirmation", $$v)
-                      },
-                      expression: "form.password_confirmation"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.errors.password_confirmation
-                    ? _c("span", { staticClass: "text-danger" }, [
-                        _vm._v(_vm._s(_vm.errors.password_confirmation[0]))
-                      ])
-                    : _vm._e()
+                  _c("v-col", { attrs: { cols: "12" } }, [
+                    _c(
+                      "div",
+                      { staticClass: "d-flex" },
+                      [
+                        _c("v-icon", { staticClass: "icon-form" }, [
+                          _vm._v("mdi-email-check")
+                        ]),
+                        _vm._v(" "),
+                        _c("v-text-field", {
+                          attrs: {
+                            label: "Password Confirmation",
+                            type: _vm.show ? "text" : "password",
+                            "append-icon": _vm.show ? "mdi-eye" : "mdi-eye-off",
+                            outlined: ""
+                          },
+                          on: {
+                            "click:append": function($event) {
+                              _vm.show = !_vm.show
+                            }
+                          },
+                          model: {
+                            value: _vm.form.password_confirmation,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "password_confirmation", $$v)
+                            },
+                            expression: "form.password_confirmation"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm.errors.password_confirmation
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(_vm._s(_vm.errors.password_confirmation[0]))
+                        ])
+                      : _vm._e()
+                  ])
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-row",
-            [
+              ),
+              _vm._v(" "),
               _c(
-                "v-col",
-                { attrs: { cols: "12", sm: "6" } },
+                "v-row",
                 [
                   _c(
-                    "v-btn",
-                    {
-                      attrs: {
-                        color: "green",
-                        type: "submit",
-                        disabled: !_vm.checkValidation
-                      }
-                    },
+                    "v-col",
+                    { attrs: { cols: "12" } },
                     [
-                      _c("v-icon", { attrs: { color: "white" } }, [
-                        _vm._v("home")
-                      ]),
-                      _vm._v("\n                    Sign Up\n                ")
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            color: "green",
+                            type: "submit",
+                            disabled: !_vm.checkValidation
+                          }
+                        },
+                        [
+                          _c("v-icon", { attrs: { color: "white" } }, [
+                            _vm._v("home")
+                          ]),
+                          _vm._v(
+                            "\n                        Sign Up\n                    "
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )

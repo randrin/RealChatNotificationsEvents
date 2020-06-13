@@ -1,64 +1,78 @@
 <template>
-    <v-container class="my-5">
+    <v-container fluid class="my-12 forum-signup-wrapper">
         <h2 class="text-center">Welcome to Sign Up Page</h2>
         <v-form @submit.prevent="signup">
-            <v-row>
-                <v-col cols="12" sm="6">
-                    <v-text-field
-                            v-model="form.name"
-                            label="Full Name"
-                            type="text"
-                            outlined
-                    ></v-text-field>
-                    <span class="text-danger" v-if="errors.name">{{errors.name[0]}}</span>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col cols="12" sm="6">
-                    <v-text-field
-                            v-model="form.email"
-                            label="Email Address"
-                            type="text"
-                            outlined
-                    ></v-text-field>
-                    <span class="text-danger" v-if="errors.email">{{errors.email[0]}}</span>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col cols="12" sm="6">
-                    <v-text-field
-                            v-model="form.password"
-                            label="Password"
-                            :type="show ? 'text' : 'password'"
-                            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                            outlined
-                            @click:append="show = !show"
-                    ></v-text-field>
-                    <span class="text-danger" v-if="errors.password">{{errors.password[0]}}</span>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col cols="12" sm="6">
-                    <v-text-field
-                            v-model="form.password_confirmation"
-                            label="Password Confirmation"
-                            :type="show ? 'text' : 'password'"
-                            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                            outlined
-                            @click:append="show = !show"
-                    ></v-text-field>
-                    <span class="text-danger"
-                          v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</span>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col cols="12" sm="6">
-                    <v-btn color="green" type="submit" :disabled="!checkValidation">
-                        <v-icon color="white">home</v-icon>
-                        Sign Up
-                    </v-btn>
-                </v-col>
-            </v-row>
+            <v-container class="forum-signup-container my-5">
+                <v-row>
+                    <v-col cols="12">
+                        <div class="d-flex">
+                            <v-icon class="icon-form">mdi-email-check</v-icon>
+                            <v-text-field
+                                    v-model="form.name"
+                                    label="Full Name"
+                                    type="text"
+                                    outlined
+                            ></v-text-field>
+                        </div>
+                        <span class="text-danger" v-if="errors.name">{{errors.name[0]}}</span>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col cols="12">
+                        <div class="d-flex">
+                            <v-icon class="icon-form">mdi-email-check</v-icon>
+                            <v-text-field
+                                    v-model="form.email"
+                                    label="Email Address"
+                                    type="text"
+                                    outlined
+                            ></v-text-field>
+                        </div>
+                        <span class="text-danger" v-if="errors.email">{{errors.email[0]}}</span>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col cols="12">
+                        <div class="d-flex">
+                            <v-icon class="icon-form">mdi-email-check</v-icon>
+                            <v-text-field
+                                    v-model="form.password"
+                                    label="Password"
+                                    :type="show ? 'text' : 'password'"
+                                    :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                                    outlined
+                                    @click:append="show = !show"
+                            ></v-text-field>
+                        </div>
+                        <span class="text-danger" v-if="errors.password">{{errors.password[0]}}</span>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col cols="12">
+                        <div class="d-flex">
+                            <v-icon class="icon-form">mdi-email-check</v-icon>
+                            <v-text-field
+                                    v-model="form.password_confirmation"
+                                    label="Password Confirmation"
+                                    :type="show ? 'text' : 'password'"
+                                    :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                                    outlined
+                                    @click:append="show = !show"
+                            ></v-text-field>
+                        </div>
+                        <span class="text-danger"
+                              v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</span>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col cols="12">
+                        <v-btn color="green" type="submit" :disabled="!checkValidation">
+                            <v-icon color="white">home</v-icon>
+                            Sign Up
+                        </v-btn>
+                    </v-col>
+                </v-row>
+            </v-container>
         </v-form>
     </v-container>
 </template>
