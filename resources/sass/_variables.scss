@@ -7,13 +7,22 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+:root {
+  --blue: #3490dc;
+  --indigo: #6574cd;
+  --purple: #9561e2;
+  --pink: #f66d9b;
+  --red: #e3342f;
+  --orange: #f6993f;
+  --yellow: #ffed4a;
+  --green: #38c172;
+  --teal: #4dc0b5;
+  --cyan: #6cb2eb;
+  --white: #ffffff;
+  --nav-bar-background: #242526;
+  --nav-bar-background-gradient: linear-gradient(to top, #242526, rgba(36, 37, 38, 0.9), rgba(36, 37, 38, 0.7), rgba(36, 37, 38, 0.4), rgba(36, 37, 38, 0));
+  --surface-background: #242526;
+  --web-wash: #18191a;
+  --primary-button-background: #2d88ff;
+  --notification-badge: #f02849;
+}

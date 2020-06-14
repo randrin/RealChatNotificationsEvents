@@ -7,6 +7,15 @@
 // Forums Responsive Devices Sass
 @import 'mixins';
 
+// Components
+@import 'inc/themes';
+@import 'inc/tools';
+@import 'components/toolbar';
+@import 'components/login';
+@import 'components/signup';
+@import 'components/questions';
+@import 'components/likes';
+
 // Forums Styles Sass
 @import 'forum';
 

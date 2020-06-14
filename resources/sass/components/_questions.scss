@@ -1,0 +1,17 @@
+.forum-questions-wrapper {
+  .forum-questions-title {
+    color: var(--primary-button-background);
+  }
+  .forum-questions-author {
+    color: var(--white);
+  }
+  .forum-questions-date {
+    color: var(--notification-badge);
+  }
+  .forum-questions-body {
+    color: var(--white) !important;
+    line-height: 1.3333;
+    font-weight: normal;
+    font-size: .9375rem;
+  }
+}

@@ -13,4 +13,7 @@ class Category extends Model
     {
         return 'slug';
     }
+    public function questions() {
+        return $this->hasMany(Question::class);
+    }
 }

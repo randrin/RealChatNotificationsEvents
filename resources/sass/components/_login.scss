@@ -1,0 +1,19 @@
+.forum-login-wrapper {
+  .forum-login-container {
+    @include large() {
+      width: 50%;
+    }
+  }
+
+  .forum-login-footer {
+    @include large() {
+      margin: 0 150px;
+    }
+    hr {
+      border-top: 1px solid var(--white);
+    }
+  }
+  .forum-login-cta {
+    color: var(--white);
+  }
+}

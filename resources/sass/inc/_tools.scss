@@ -1,0 +1,32 @@
+// Scrollbar
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+hr {
+  margin: 0rem !important;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+.icon-form {
+  margin: -30px 15px 0 0;
+}
+
+#toTop {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: none;
+}

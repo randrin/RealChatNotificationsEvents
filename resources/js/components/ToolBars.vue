@@ -1,7 +1,7 @@
 <template>
     <v-toolbar>
         <v-toolbar-title>
-            <router-link to="/">Kazou Forum</router-link>
+            <router-link to="/" class="forum-toolbar-title">Kazou Forum</router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <notifications v-if="isLogged"></notifications>

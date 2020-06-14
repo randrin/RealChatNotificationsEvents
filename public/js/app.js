@@ -2118,6 +2118,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SideBar",
   data: function data() {
@@ -2302,6 +2306,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2374,6 +2380,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -3239,6 +3249,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -64169,6 +64182,12 @@ var render = function() {
                     ? undefined
                     : _vm._e(),
                   _vm._v(" "),
+                  _c("div", { staticClass: "text-left" }, [
+                    _c("span", { staticClass: "questions-count" }, [
+                      _vm._v(_vm._s(category.questionsCount))
+                    ])
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "v-list-item-content",
                     { staticClass: "text-right" },
@@ -64225,7 +64244,13 @@ var render = function() {
     [
       _c(
         "v-toolbar-title",
-        [_c("router-link", { attrs: { to: "/" } }, [_vm._v("Kazou Forum")])],
+        [
+          _c(
+            "router-link",
+            { staticClass: "forum-toolbar-title", attrs: { to: "/" } },
+            [_vm._v("Kazou Forum")]
+          )
+        ],
         1
       ),
       _vm._v(" "),
@@ -64441,10 +64466,13 @@ var render = function() {
                           }
                         },
                         [
-                          _c("v-icon", [_vm._v("mdi-login")]),
-                          _vm._v(
-                            "\n                        Login\n                    "
-                          )
+                          _c("v-icon", { attrs: { color: "white" } }, [
+                            _vm._v("mdi-login")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "forum-login-cta" }, [
+                            _vm._v("Login")
+                          ])
                         ],
                         1
                       )
@@ -64461,9 +64489,21 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("p", [_vm._v(" New user on the forum? ")])
+      _c("div", { staticClass: "forum-login-footer text-center" }, [
+        _c("hr"),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "mt-2" },
+          [
+            _vm._v("New user on the forum? "),
+            _c("router-link", { attrs: { to: "/signup" } }, [
+              _vm._v("Create my account")
+            ])
+          ],
+          1
+        )
+      ])
     ],
     1
   )
@@ -64546,7 +64586,7 @@ var render = function() {
                       { staticClass: "d-flex" },
                       [
                         _c("v-icon", { staticClass: "icon-form" }, [
-                          _vm._v("mdi-email-check")
+                          _vm._v("mdi-account")
                         ]),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -64626,7 +64666,7 @@ var render = function() {
                       { staticClass: "d-flex" },
                       [
                         _c("v-icon", { staticClass: "icon-form" }, [
-                          _vm._v("mdi-email-check")
+                          _vm._v("mdi-account-lock-outline")
                         ]),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -64672,7 +64712,7 @@ var render = function() {
                       { staticClass: "d-flex" },
                       [
                         _c("v-icon", { staticClass: "icon-form" }, [
-                          _vm._v("mdi-email-check")
+                          _vm._v("mdi-account-lock-outline")
                         ]),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -64727,11 +64767,12 @@ var render = function() {
                         },
                         [
                           _c("v-icon", { attrs: { color: "white" } }, [
-                            _vm._v("home")
+                            _vm._v("mdi-send-check-outline")
                           ]),
-                          _vm._v(
-                            "\n                        Sign Up\n                    "
-                          )
+                          _vm._v(" "),
+                          _c("span", { staticClass: "forum-signup-cta" }, [
+                            _vm._v("Sign Up")
+                          ])
                         ],
                         1
                       )
@@ -64746,7 +64787,21 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "forum-signup-footer text-center" }, [
+        _c("hr"),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "mt-2" },
+          [
+            _vm._v("Already have an account? "),
+            _c("router-link", { attrs: { to: "/login" } }, [_vm._v("login")])
+          ],
+          1
+        )
+      ])
     ],
     1
   )
@@ -65065,7 +65120,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-container",
-    { staticClass: "my-5" },
+    { staticClass: "my-12 forum-forum-wrapper", attrs: { fluid: "" } },
     [
       _c("h2", { staticClass: "text-center" }, [
         _vm._v("Welcome to Forum Tech")
@@ -65073,7 +65128,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-layout",
-        { attrs: { row: "", wrap: "" } },
+        {
+          staticClass: "forum-forum-container mt-12",
+          attrs: { row: "", wrap: "" }
+        },
         [
           _c(
             "v-flex",
@@ -65082,6 +65140,7 @@ var render = function() {
               _vm._l(_vm.questions, function(question) {
                 return _c("questions", {
                   key: question.title,
+                  staticClass: "forum-questions-wrapper",
                   attrs: { data: question }
                 })
               }),
@@ -65718,16 +65777,24 @@ var render = function() {
                 "v-list-item-title",
                 { staticClass: "headline" },
                 [
-                  _c("router-link", { attrs: { to: _vm.data.path } }, [
-                    _vm._v(_vm._s(_vm.data.title))
-                  ])
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "forum-questions-title",
+                      attrs: { to: _vm.data.path }
+                    },
+                    [_vm._v(_vm._s(_vm.data.title))]
+                  )
                 ],
                 1
               ),
               _vm._v(" "),
               _c("v-list-item-subtitle", [
-                _vm._v("By " + _vm._s(_vm.data.user) + ", "),
-                _c("span", { staticClass: "text-danger" }, [
+                _c("span", { staticClass: "forum-questions-author" }, [
+                  _vm._v("By " + _vm._s(_vm.data.user))
+                ]),
+                _vm._v(",\n                "),
+                _c("span", { staticClass: "forum-questions-date" }, [
                   _vm._v(_vm._s(_vm.data.created_at))
                 ])
               ])
@@ -65738,7 +65805,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-card-text", [
+      _c("v-card-text", { staticClass: "forum-questions-body" }, [
         _vm._v("\n        " + _vm._s(_vm.data.body) + "\n    ")
       ])
     ],

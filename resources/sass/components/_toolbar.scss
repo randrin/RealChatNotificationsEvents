@@ -1,0 +1,15 @@
+.forum-toolbar-wrapper {
+  height: 80px !important;
+
+  .v-toolbar__content {
+    .v-toolbar__title,
+    .forum-toolbar-links {
+      top: 7px;
+      position: relative;
+    }
+  }
+  .forum-toolbar-title {
+    font-weight: 600;
+    font-size: 24px;
+  }
+}

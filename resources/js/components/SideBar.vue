@@ -14,6 +14,10 @@
                     <v-icon v-if="category.icon" color="pink">mdi-star</v-icon>
                 </v-list-item-icon>
 
+                <div class="text-left">
+                    <span class="questions-count">{{category.questionsCount}}</span>
+                </div>
+
                 <v-list-item-content class="text-right">
                     <v-list-item-title v-text="category.name"></v-list-item-title>
                 </v-list-item-content>

@@ -1,9 +1,9 @@
 <template>
-    <v-container class="my-5">
+    <v-container fluid class="my-12 forum-forum-wrapper">
         <h2 class="text-center">Welcome to Forum Tech</h2>
-        <v-layout row wrap>
+        <v-layout row wrap class="forum-forum-container mt-12">
             <v-flex xs8>
-                <questions
+                <questions class="forum-questions-wrapper"
                 v-for="question in questions"
                 :key="question.title"
                 :data="question">

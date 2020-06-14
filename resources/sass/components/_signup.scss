@@ -1,0 +1,20 @@
+.forum-signup-wrapper {
+  .forum-signup-container {
+    @include large() {
+      width: 50%;
+    }
+  }
+
+  .forum-signup-footer {
+    @include large() {
+      margin: 0 150px;
+    }
+    hr {
+      border-top: 1px solid var(--white);
+    }
+  }
+
+  .forum-signup-cta {
+    color: var(--white);
+  }
+}

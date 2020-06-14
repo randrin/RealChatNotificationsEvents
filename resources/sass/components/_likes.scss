@@ -1,0 +1,16 @@
+.forum-likes-wrapper {
+  right: 20px;
+  position: absolute;
+  float: right;
+
+  .forum-likes-count {
+    border: 1px solid var(--notification-badge) !important;
+    padding: 5px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background: var(--notification-badge) !important;
+    color: var(--white);
+    font-weight: 600;
+  }
+}

@@ -6,7 +6,7 @@
                 <v-row>
                     <v-col cols="12">
                         <div class="d-flex">
-                            <v-icon class="icon-form">mdi-email-check</v-icon>
+                            <v-icon class="icon-form">mdi-account</v-icon>
                             <v-text-field
                                     v-model="form.name"
                                     label="Full Name"
@@ -34,7 +34,7 @@
                 <v-row>
                     <v-col cols="12">
                         <div class="d-flex">
-                            <v-icon class="icon-form">mdi-email-check</v-icon>
+                            <v-icon class="icon-form">mdi-account-lock-outline</v-icon>
                             <v-text-field
                                     v-model="form.password"
                                     label="Password"
@@ -50,7 +50,7 @@
                 <v-row>
                     <v-col cols="12">
                         <div class="d-flex">
-                            <v-icon class="icon-form">mdi-email-check</v-icon>
+                            <v-icon class="icon-form">mdi-account-lock-outline</v-icon>
                             <v-text-field
                                     v-model="form.password_confirmation"
                                     label="Password Confirmation"
@@ -67,13 +67,17 @@
                 <v-row>
                     <v-col cols="12">
                         <v-btn color="green" type="submit" :disabled="!checkValidation">
-                            <v-icon color="white">home</v-icon>
-                            Sign Up
+                            <v-icon color="white">mdi-send-check-outline</v-icon>
+                            <span class="forum-signup-cta">Sign Up</span>
                         </v-btn>
                     </v-col>
                 </v-row>
             </v-container>
         </v-form>
+        <div class="forum-signup-footer text-center">
+            <hr />
+            <p class="mt-2">Already have an account? <router-link to="/login">login</router-link></p>
+        </div>
     </v-container>
 </template>
 

@@ -43,15 +43,17 @@
                 <v-row>
                     <v-col cols="12">
                         <v-btn color="green" type="submit" :disabled="!checkValidation">
-                            <v-icon>mdi-login</v-icon>
-                            Login
+                            <v-icon color="white">mdi-login</v-icon>
+                            <span class="forum-login-cta">Login</span>
                         </v-btn>
                     </v-col>
                 </v-row>
             </v-container>
         </v-form>
-        <hr />
-        <p> New user on the forum? </p>
+        <div class="forum-login-footer text-center">
+            <hr />
+            <p class="mt-2">New user on the forum? <router-link to="/signup">Create my account</router-link></p>
+        </div>
     </v-container>
 </template>
 

@@ -4,12 +4,15 @@
             <v-list-item-avatar color="grey"></v-list-item-avatar>
             <v-list-item-content>
                 <v-list-item-title class="headline">
-                    <router-link :to="data.path">{{data.title}}</router-link>
+                    <router-link class="forum-questions-title" :to="data.path">{{data.title}}</router-link>
                 </v-list-item-title>
-                <v-list-item-subtitle>By {{data.user}}, <span class="text-danger">{{data.created_at}}</span></v-list-item-subtitle>
+                <v-list-item-subtitle>
+                    <span class="forum-questions-author">By {{data.user}}</span>,
+                    <span class="forum-questions-date">{{data.created_at}}</span>
+                </v-list-item-subtitle>
             </v-list-item-content>
         </v-list-item>
-        <v-card-text>
+        <v-card-text class="forum-questions-body">
             {{data.body}}
         </v-card-text>
     </v-card>
