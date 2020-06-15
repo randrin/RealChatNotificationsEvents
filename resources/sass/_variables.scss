@@ -24,5 +24,14 @@ $line-height-base: 1.6;
   --surface-background: #242526;
   --web-wash: #18191a;
   --primary-button-background: #2d88ff;
+  --secondary-button-background: #ffffff1a;
   --notification-badge: #f02849;
+}
+
+//
+.forum-color-red {
+  color: var(--notification-badge);
+}
+.forum-color-primary {
+  color: var(--primary-button-background);
 }

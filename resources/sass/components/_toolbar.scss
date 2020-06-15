@@ -10,6 +10,30 @@
   }
   .forum-toolbar-title {
     font-weight: 600;
-    font-size: 24px;
+    font-size: 28px;
+    @include large() {
+      padding-left: 50px;
+    }
+  }
+}
+
+.forum-notifications-wrapper {
+  background-color: var(--secondary-button-background);
+  padding: 5px;
+  border-radius: 50%;
+  .v-btn__content {
+    padding-left: 15px;
+  }
+  .forum-notifications-count {
+    top: -14px;
+    left: -15px;
+    position: relative;
+    border: 1px solid var(--nav-bar-background);
+    border-radius: 100%;
+    padding: 3px 0 0 0px;
+    width: 25px;
+    color: var(--white);
+    height: 25px;
+    background: var(--notification-badge);
   }
 }

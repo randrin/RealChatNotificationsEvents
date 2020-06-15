@@ -12,3 +12,11 @@ $(document).ready(function () {
         return false;
     });
 });
+
+$(document).ready(function () {
+    var $notificatiions = $('.forum-notifications-wrapper').find('.forum-notifications-count');
+    if($notificatiions) {
+        $(this).parent().addClass('forum-without-notifications');
+    }
+    $notificatiions.addClass('forum-without-notifications');
+});

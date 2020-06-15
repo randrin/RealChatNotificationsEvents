@@ -1,5 +1,5 @@
 <template>
-    <div class="forum-notifications-wrapper text-center mr-5">
+    <div class="forum-notifications-wrapper text-center mt-3 mr-5">
         <v-menu offset-y>
             <template v-slot:activator="{ on }">
                 <v-btn icon v-on="on">

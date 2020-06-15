@@ -13,21 +13,31 @@
   color: var(--white);
 }
 
-.v-icon.v-icon {
-  color: var(--white);
-}
-
-.theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)>.v-input__control>.v-input__slot fieldset {
+//.v-icon.v-icon,
+.theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)>.v-input__control>.v-input__slot fieldset,
+.theme--light.v-input input, .theme--light.v-input textarea, .theme--light.v-label,
+.theme--light.v-card>.v-card__text,
+.theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled),
+.theme--light.v-select .v-select__selection--comma {
   color: var(--white) !important;
 }
 
-.theme--light.v-input input, .theme--light.v-input textarea, .theme--light.v-label {
-  background-color: var(--nav-bar-background);
-  color: var(--white) !important;
-}
 .v-application .indigo {
   background-color: var(--primary-button-background) !important;
 }
-.theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
-  color: var(--white) !important;
+
+.v-application .red--text {
+  color: var(--notification-badge) !important;
+  caret-color: var(--notification-badge) !important;
+}
+
+.v-application .red {
+  background-color: var(--notification-badge) !important;
+  border-color: var(--notification-badge) !important;
+  border-bottom-left-radius: 0%;
+}
+
+.theme--light.v-divider {
+  border-color: var(--white) !important;
+  padding: 15px;
 }

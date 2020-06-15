@@ -10,6 +10,7 @@ import Question from "../site/questions/Question";
 import CreateQuestion from "../site/questions/CreateQuestion";
 import CreateCategory from "../site/categories/CreateCategory";
 import AppForum from "../AppForum";
+import Error404 from "../inc/Error404";
 
 Vue.use(VueRouter);
 
@@ -22,7 +23,8 @@ const routes = [
     { path: '/ask/question', component: CreateQuestion, name: 'createQuestion' },
     { path: '/create/category', component: CreateCategory, name: 'createCategory' },
     { path: '/question/:slug', component: Question, name: 'questions' },
-    { path: '/categories', component: Categories, name: 'categories' }
+    { path: '/categories', component: Categories, name: 'categories' },
+    { path: '/**', component: Error404, name: 'error404' }
   ];
 
 const router = new VueRouter({

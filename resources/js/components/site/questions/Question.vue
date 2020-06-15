@@ -22,7 +22,8 @@
         data() {
             return {
                 questions: null,
-                isEdit: false
+                isEdit: false,
+                errors: []
             }
         },
         created() {
@@ -34,7 +35,11 @@
                 const slug = this.$route.params.slug;
                 axios.get(`/api/question/${slug}`)
                     .then((response) => this.questions = response.data.data)
-                    .catch((error) => error.response.data)
+                    .catch((error) => {
+                        console.log('question not found: ', error.response.data);
+                        this.errors = error.response.data;
+                        EventBus.$emit('questionNotFound');
+                    })
             },
             loadEditing() {
                 EventBus.$on('startEditing', () => {

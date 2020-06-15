@@ -30,3 +30,17 @@ button:focus {
   right: 10px;
   display: none;
 }
+
+.forum-without-notifications {
+  padding-left: 15px;
+}
+
+.editor-toolbar {
+  opacity: 1;
+  background-color: var(--white);
+}
+
+.CodeMirror {
+  background: var(--nav-bar-background);
+  color: var(--white);
+}

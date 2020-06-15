@@ -1,6 +1,6 @@
 <template>
-    <v-container>
-        <h2>All Replies About <span class="text-danger">{{title}}</span></h2>
+    <v-container class="forum-replies-wrapper">
+        <h2 class="forum-replies-title">All Replies About <span class="forum-color-primary">{{title}}</span></h2>
         <reply v-for="(reply, index) in allReplies" :key="reply.id" :reply="reply" :index="index"
                v-if="showReply"></reply>
         <create-reply v-else></create-reply>

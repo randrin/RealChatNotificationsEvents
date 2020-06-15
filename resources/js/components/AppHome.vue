@@ -8,10 +8,10 @@
 </template>
 
 <script>
-    import toolbar from './Toolbars';
+    import toolbar from './inc/ToolBars';
     import AppFooter from './AppFooter';
     import login from "./site/auth/Login";
-    import ScrollToTop from "./ScrollToTop";
+    import ScrollToTop from "./inc/ScrollToTop";
 
     export default {
         name: "AppForum",

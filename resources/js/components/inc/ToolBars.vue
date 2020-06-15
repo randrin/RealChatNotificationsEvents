@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import Notifications from "./site/notifications/Notifications";
+    import Notifications from "../site/notifications/Notifications";
 
     export default {
         components: {Notifications},

@@ -1,25 +1,26 @@
 <template>
-    <div class="container-fluid my-5">
+    <div class="forum-questions-wrapper container-fluid my-5">
         <v-card class="mx-auto mb-4">
             <v-list-item>
                 <div class="d-flex">
                     <v-list-item-avatar color="grey"></v-list-item-avatar>
                     <v-list-item-content>
-                        <v-list-item-title class="headline">
+                        <v-list-item-title class="forum-questions-title headline">
                             {{question.title}}
                         </v-list-item-title>
-                        <v-list-item-subtitle>By {{question.user}}, <span
-                                class="text-danger">{{question.created_at}}</span>
+                        <v-list-item-subtitle>
+                            <span class="forum-questions-author">By {{question.user}}</span>,
+                            <span class="forum-questions-date">{{question.created_at}}</span>
                         </v-list-item-subtitle>
                     </v-list-item-content>
                 </div>
                 <v-spacer></v-spacer>
-                <v-chip class="ma-2" color="green" text-color="white">
-                    <v-avatar left class="green darken-4">{{question.repliesCount}}</v-avatar>
+                <v-chip class="ma-2" color="red" text-color="white">
+                    <v-avatar left class="grey darken-4">{{question.repliesCount}}</v-avatar>
                     Replies
                 </v-chip>
             </v-list-item>
-            <v-card-text v-html="body">
+            <v-card-text class="forum-questions-body" v-html="body">
             </v-card-text>
             <div v-if="userIsLogged">
                 <v-card-actions v-if="showActions">
@@ -44,7 +45,9 @@
                     <v-btn color="red">Login</v-btn>
                 </router-link>
             </div>
-            <v-divider></v-divider>
+            <div class="row">
+                <v-divider></v-divider>
+            </div>
         </div>
         <Replies :question="question" :title="question.title" v-if="showReply"></Replies>
         <create-reply v-else :question="question.slug"></create-reply>

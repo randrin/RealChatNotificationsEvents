@@ -26,7 +26,7 @@
 
 <script>
     import Questions from "../questions/Questions";
-    import SideBar from "../../SideBar";
+    import SideBar from "../../inc/SideBar";
     import Pagination from "../pagination/Pagination";
     export default {
         name: "Forum",

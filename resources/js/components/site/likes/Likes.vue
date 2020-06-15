@@ -1,7 +1,7 @@
 <template>
     <div class="my-2 forum-likes-wrapper">
         <span class="forum-likes-count">{{count}}</span>
-        <v-btn icon :color="colorLike" @click="likeIt">
+        <v-btn icon :class="colorLike" color="white" @click="likeIt">
             <v-icon>mdi-thumb-up</v-icon>
         </v-btn>
     </div>
@@ -19,10 +19,11 @@
         },
         computed: {
             colorLike() {
-                return this.isLiked ? 'deep-orange' : 'deep-orange lighten-4';
+                return this.isLiked ? 'red' : '';
             }
         },
         created() {
+            this.checkUserLike();
             Echo.channel('LikeChannel').listen('LikeEvent', (e) => {
                 if(this.reply.id === e.id) {
                     e.type == 1 ? this.count++ : this.count--;
@@ -30,6 +31,11 @@
             })
         },
         methods: {
+            checkUserLike() {
+                console.log('User Id: ', User.getIdUser());
+                console.log('user_id: ', this.reply.user_id);
+                return this.isLiked == (User.getIdUser() === this.reply.user_id) ? 'red' : '';
+            },
             likeIt() {
                 if(User.isLogged()) {
                     this.isLiked ? this.decrementLike() : this.incrementLike();
@@ -40,11 +46,11 @@
             },
             incrementLike() {
                 axios.post(`/api/like/${this.reply.id}`)
-                    .then((reponse) => this.count++)
+                    .then((response) => this.count++)
             },
             decrementLike() {
                 axios.delete(`/api/like/${this.reply.id}`)
-                    .then((reponse) => this.count--)
+                    .then((response) => this.count--)
             }
         }
     }
