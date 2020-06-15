@@ -52,7 +52,7 @@
         </v-form>
         <div class="forum-login-footer text-center">
             <hr />
-            <p class="mt-2">New user on the forum? <router-link to="/signup">Create my account</router-link></p>
+            <p class="mt-5">New user on the forum? <router-link to="/signup">Create my account</router-link></p>
         </div>
     </v-container>
 </template>

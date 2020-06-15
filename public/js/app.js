@@ -64575,7 +64575,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "p",
-          { staticClass: "mt-2" },
+          { staticClass: "mt-5" },
           [
             _vm._v("New user on the forum? "),
             _c("router-link", { attrs: { to: "/signup" } }, [
@@ -64875,7 +64875,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "p",
-          { staticClass: "mt-2" },
+          { staticClass: "mt-5" },
           [
             _vm._v("Already have an account? "),
             _c("router-link", { attrs: { to: "/login" } }, [_vm._v("login")])

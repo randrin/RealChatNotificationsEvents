@@ -76,7 +76,7 @@
         </v-form>
         <div class="forum-signup-footer text-center">
             <hr />
-            <p class="mt-2">Already have an account? <router-link to="/login">login</router-link></p>
+            <p class="mt-5">Already have an account? <router-link to="/login">login</router-link></p>
         </div>
     </v-container>
 </template>
