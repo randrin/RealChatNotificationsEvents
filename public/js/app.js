@@ -64464,9 +64464,11 @@ var render = function() {
                       "div",
                       { staticClass: "d-flex" },
                       [
-                        _c("v-icon", { staticClass: "icon-form" }, [
-                          _vm._v("mdi-email-check")
-                        ]),
+                        _c(
+                          "v-icon",
+                          { staticClass: "icon-form forum-icon-form" },
+                          [_vm._v("mdi-email-check")]
+                        ),
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {
@@ -64498,9 +64500,11 @@ var render = function() {
                       "div",
                       { staticClass: "d-flex" },
                       [
-                        _c("v-icon", { staticClass: "icon-form" }, [
-                          _vm._v("mdi-account-lock-outline")
-                        ]),
+                        _c(
+                          "v-icon",
+                          { staticClass: "icon-form forum-icon-form" },
+                          [_vm._v("mdi-account-lock-outline")]
+                        ),
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {
@@ -64547,9 +64551,14 @@ var render = function() {
                           }
                         },
                         [
-                          _c("v-icon", { attrs: { color: "white" } }, [
-                            _vm._v("mdi-login")
-                          ]),
+                          _c(
+                            "v-icon",
+                            {
+                              staticClass: "forum-icon-form",
+                              attrs: { color: "white" }
+                            },
+                            [_vm._v("mdi-login")]
+                          ),
                           _vm._v(" "),
                           _c("span", { staticClass: "forum-login-cta" }, [
                             _vm._v("Login")
@@ -64666,9 +64675,11 @@ var render = function() {
                       "div",
                       { staticClass: "d-flex" },
                       [
-                        _c("v-icon", { staticClass: "icon-form" }, [
-                          _vm._v("mdi-account")
-                        ]),
+                        _c(
+                          "v-icon",
+                          { staticClass: "icon-form forum-icon-form" },
+                          [_vm._v("mdi-account")]
+                        ),
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {
@@ -64706,9 +64717,11 @@ var render = function() {
                       "div",
                       { staticClass: "d-flex" },
                       [
-                        _c("v-icon", { staticClass: "icon-form" }, [
-                          _vm._v("mdi-email-check")
-                        ]),
+                        _c(
+                          "v-icon",
+                          { staticClass: "icon-form forum-icon-form" },
+                          [_vm._v("mdi-email-check")]
+                        ),
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {
@@ -64746,9 +64759,11 @@ var render = function() {
                       "div",
                       { staticClass: "d-flex" },
                       [
-                        _c("v-icon", { staticClass: "icon-form" }, [
-                          _vm._v("mdi-account-lock-outline")
-                        ]),
+                        _c(
+                          "v-icon",
+                          { staticClass: "icon-form forum-icon-form" },
+                          [_vm._v("mdi-account-lock-outline")]
+                        ),
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {
@@ -64792,9 +64807,11 @@ var render = function() {
                       "div",
                       { staticClass: "d-flex" },
                       [
-                        _c("v-icon", { staticClass: "icon-form" }, [
-                          _vm._v("mdi-account-lock-outline")
-                        ]),
+                        _c(
+                          "v-icon",
+                          { staticClass: "icon-form forum-icon-form" },
+                          [_vm._v("mdi-account-lock-outline")]
+                        ),
                         _vm._v(" "),
                         _c("v-text-field", {
                           attrs: {

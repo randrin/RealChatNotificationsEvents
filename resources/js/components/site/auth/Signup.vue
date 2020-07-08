@@ -6,7 +6,7 @@
                 <v-row>
                     <v-col cols="12">
                         <div class="d-flex">
-                            <v-icon class="icon-form">mdi-account</v-icon>
+                            <v-icon class="icon-form forum-icon-form">mdi-account</v-icon>
                             <v-text-field
                                     v-model="form.name"
                                     label="Full Name"
@@ -20,7 +20,7 @@
                 <v-row>
                     <v-col cols="12">
                         <div class="d-flex">
-                            <v-icon class="icon-form">mdi-email-check</v-icon>
+                            <v-icon class="icon-form forum-icon-form">mdi-email-check</v-icon>
                             <v-text-field
                                     v-model="form.email"
                                     label="Email Address"
@@ -34,7 +34,7 @@
                 <v-row>
                     <v-col cols="12">
                         <div class="d-flex">
-                            <v-icon class="icon-form">mdi-account-lock-outline</v-icon>
+                            <v-icon class="icon-form forum-icon-form">mdi-account-lock-outline</v-icon>
                             <v-text-field
                                     v-model="form.password"
                                     label="Password"
@@ -50,7 +50,7 @@
                 <v-row>
                     <v-col cols="12">
                         <div class="d-flex">
-                            <v-icon class="icon-form">mdi-account-lock-outline</v-icon>
+                            <v-icon class="icon-form forum-icon-form">mdi-account-lock-outline</v-icon>
                             <v-text-field
                                     v-model="form.password_confirmation"
                                     label="Password Confirmation"

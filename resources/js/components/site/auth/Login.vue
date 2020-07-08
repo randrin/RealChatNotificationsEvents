@@ -15,7 +15,7 @@
                 <v-row>
                     <v-col cols="12">
                         <div class="d-flex">
-                            <v-icon class="icon-form">mdi-email-check</v-icon>
+                            <v-icon class="icon-form forum-icon-form">mdi-email-check</v-icon>
                             <v-text-field
                                     v-model="form.email"
                                     label="Email Address"
@@ -28,7 +28,7 @@
                 <v-row>
                     <v-col cols="12">
                         <div class="d-flex">
-                            <v-icon class="icon-form">mdi-account-lock-outline</v-icon>
+                            <v-icon class="icon-form forum-icon-form">mdi-account-lock-outline</v-icon>
                             <v-text-field
                                     v-model="form.password"
                                     label="Password"
@@ -43,7 +43,7 @@
                 <v-row>
                     <v-col cols="12">
                         <v-btn color="green" type="submit" :disabled="!checkValidation">
-                            <v-icon color="white">mdi-login</v-icon>
+                            <v-icon color="white" class="forum-icon-form">mdi-login</v-icon>
                             <span class="forum-login-cta">Login</span>
                         </v-btn>
                     </v-col>

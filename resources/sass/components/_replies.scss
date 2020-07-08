@@ -6,6 +6,8 @@
     top: 0px;
   }
   .forum-replies-card {
-    border-radius: 50px !important;
+    border-bottom-left-radius: 50px !important;
+    border-top-right-radius: 50px !important;
+    border-bottom-right-radius: 50px !important;
   }
 }
