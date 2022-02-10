@@ -13,7 +13,7 @@
     "@mdi/font": "^5.3.45",
     "laravel-echo": "^1.8.0",
     "material-design-icons-iconfont": "^5.0.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "pusher-js": "^6.0.3",
     "vue-router": "^3.3.2",
     "vue-simplemde": "^1.0.6",
